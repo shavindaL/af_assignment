@@ -19,7 +19,7 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use("/voter", voterRoutes);
+app.use("/api/voter", voterRoutes);
 
 
 //* Connect to db
