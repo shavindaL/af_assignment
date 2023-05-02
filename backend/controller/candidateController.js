@@ -4,7 +4,7 @@ const getAllCandidates = (req, res) => {
     res.status(200).json({success:"candidates"})
 }
 
-module.export ={
+module.exports ={
 
     getAllCandidates,
 }
