@@ -34,7 +34,7 @@ const electionCandidateSchema = new Schema(
       required: true,
     },
     political_party_id: {
-      type: int,
+      type: Number,
       required: true,
     },
     province:{
@@ -74,6 +74,6 @@ const electionCandidateSchema = new Schema(
   }
 );
 
-const Candidate = mongoose.model("electionCandidate", electionCandidateSchema);
+const Candidate = mongoose.model("candidate", electionCandidateSchema);
 
 module.exports = Candidate;
