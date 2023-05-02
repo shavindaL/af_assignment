@@ -4,9 +4,11 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 
-// Import the sellerRoutes module
+// Import the voterRoutes module
 const voterRoutes = require('./routes/voterRoutes');
 
+// Import politicalPartyRoutes module
+const politicalPartyRoutes = require('./routes/politicalPartyRoutes');
 
 //* express app
 const app = express();
@@ -19,10 +21,11 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use("/api/voter", voterRoutes);
+app.use("/api/v1/voters", voterRoutes);
 // app.use("/votingCenter", votingCenterRoutes);
 
-
+// Use politicalPartyRoutes module
+app.use("/api/v1/political-parties", politicalPartyRoutes);
 
 //* Connect to db
 mongoose
