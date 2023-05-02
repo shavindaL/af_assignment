@@ -10,6 +10,9 @@ const voterRoutes = require('./routes/voterRoutes');
 // Import politicalPartyRoutes module
 const politicalPartyRoutes = require('./routes/politicalPartyRoutes');
 
+// Import politicalPartyRoutes module
+const candidateRoutes = require('./routes/candidateRoutes');
+
 // Import multer module
 const multer = require('multer');
 const storage = multer.memoryStorage();
@@ -32,9 +35,13 @@ app.use((req, res, next) => {
 });
 
 app.use("/api/v1/voters", voterRoutes);
+// app.use("/votingCenter", votingCenterRoutes);
 
 // Use politicalPartyRoutes module
 app.use("/api/v1/political-parties", politicalPartyRoutes);
+
+// Use candidateRoutes module
+app.use("/api/v1/candidates", candidateRoutes);
 
 //* Connect to db
 mongoose
