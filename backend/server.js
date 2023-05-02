@@ -10,11 +10,21 @@ const voterRoutes = require('./routes/voterRoutes');
 // Import politicalPartyRoutes module
 const politicalPartyRoutes = require('./routes/politicalPartyRoutes');
 
+// Import multer module
+const multer = require('multer');
+const storage = multer.memoryStorage();
+
+const upload = multer({
+    storage: storage
+});
+
 //* express app
 const app = express();
 
 //* middleware
 app.use(express.json());
+
+app.use(upload.single("politicalPartyLogo"));
 
 app.use((req, res, next) => {
     console.log(`${req.method} ${req.path}`);
