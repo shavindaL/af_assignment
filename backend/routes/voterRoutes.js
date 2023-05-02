@@ -4,6 +4,6 @@ const router = express.Router();
 const getAllVoters = require('../controller/voterController');
 
 
-router.get("/voter", getAllVoters)
+router.get("/", getAllVoters)
 
 module.exports = router;

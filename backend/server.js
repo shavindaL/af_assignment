@@ -19,12 +19,12 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use("/", voterRoutes);
+app.use("/voter", voterRoutes);
 
 
 //* Connect to db
 mongoose
-    .connect(process.env.MONGO_URI)
+    .connect(process.env.MONGO_URI, { dbName: process.env.DB_NAME })
     .then(() => {
 
         console.log(`Connected to the database`);
