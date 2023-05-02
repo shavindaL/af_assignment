@@ -30,13 +30,11 @@ const politicalPartySchema = new Schema({
         required: true
     },
     competitor_count: {
-        type: Number,
-        default: 0,
+        type: String,
         required: true
     },
     vote_results: {
-        type: Number,
-        default: 0,
+        type: String,
         required: true
     },
     logo: {
@@ -44,10 +42,7 @@ const politicalPartySchema = new Schema({
         default: "https://cdn.logojoy.com/wp-content/uploads/2018/05/30144716/616-768x591.png",
         required: true
     }
-},
-    {
-        timestamps: true
-    });
+});
 
 
 // Create new model

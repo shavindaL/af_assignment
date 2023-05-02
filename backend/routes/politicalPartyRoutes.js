@@ -10,11 +10,35 @@ const router = express.Router();
 
 const {
     getAllPoliticalParties,
+    getPoliticalParty,
+    addPoliticalParty,
+    updatePoliticalParty,
+    updateVoteResults,
+    deletePoliticalParty,
+    updatePhoto
 
 } = require('../controller/politicalPartyController');
 
 
 // Handle GET request at root
 router.get("/", getAllPoliticalParties);
+
+// Handle GET request at "/:id" URI
+router.get("/:id", getPoliticalParty);
+
+// Handle POST request at root
+router.post("/", addPoliticalParty);
+
+// Handle PUT request at "/:id" URI
+router.put("/:id", updatePoliticalParty);
+
+// Handle PATCH request at "/:id" URI
+router.patch("/:id", updateVoteResults);
+
+// Handle DELETE request at "/:id" URI
+router.delete("/:id", deletePoliticalParty);
+
+// Handle PATCH request at "/:id" URI
+router.patch("/:id", updatePhoto);
 
 module.exports = router;

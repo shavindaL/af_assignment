@@ -13,18 +13,28 @@ const politicalPartyRoutes = require('./routes/politicalPartyRoutes');
 // Import politicalPartyRoutes module
 const candidateRoutes = require('./routes/candidateRoutes');
 
+// Import multer module
+const multer = require('multer');
+const storage = multer.memoryStorage();
+
+const upload = multer({
+    storage: storage
+});
+
 //* express app
 const app = express();
 
 //* middleware
 app.use(express.json());
 
+app.use(upload.single("politicalPartyLogo"));
+
 app.use((req, res, next) => {
     console.log(`${req.method} ${req.path}`);
     next();
 });
 
-app.use("/", voterRoutes);
+app.use("/api/v1/voters", voterRoutes);
 // app.use("/votingCenter", votingCenterRoutes);
 
 // Use politicalPartyRoutes module
