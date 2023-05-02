@@ -10,7 +10,7 @@ const voterRoutes = require('./routes/voterRoutes');
 // Import politicalPartyRoutes module
 const politicalPartyRoutes = require('./routes/politicalPartyRoutes');
 
-// Import politicalPartyRoutes module
+// Import candidateRoutes module
 const candidateRoutes = require('./routes/candidateRoutes');
 
 // Import multer module
