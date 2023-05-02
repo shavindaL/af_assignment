@@ -20,6 +20,8 @@ app.use((req, res, next) => {
 });
 
 app.use("/api/voter", voterRoutes);
+// app.use("/votingCenter", votingCenterRoutes);
+
 
 
 //* Connect to db
