@@ -12,13 +12,26 @@ const votingCenterSchema = new Schema({
         type: String,
         required: true,
     },
-    voterContactNo: {
+    voterCenterOfficialId: {
+        type: String,
+        required: true,
+    },
+    voterCenterOfficialName: {
+        type: String,
+        required: true,
+    },
+    voterCenterContactNo: {
         type: Number,
         required: true,
     },
-    voterAddress: {
+    votingCenterPassowrd: {
         type: String,
         required: true,
+    },
+    voterCount: {
+        type: Number,
+        required: true,
+        default: 0
     },
 },
     {
