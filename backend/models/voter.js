@@ -16,6 +16,18 @@ const voterSchema = new Schema({
         type: Number,
         required: true,
     },
+    gender: {
+        type: String,
+        required: true
+    },
+    age: {
+        type: Number,
+        required: true
+    },
+    dob: {
+        type: String,
+        required: true
+    },
     voterAddress: {
         type: String,
         required: true,

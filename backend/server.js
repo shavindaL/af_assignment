@@ -21,7 +21,7 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use("/api/v1/voters", voterRoutes);
+app.use("/", voterRoutes);
 // app.use("/votingCenter", votingCenterRoutes);
 
 // Use politicalPartyRoutes module
