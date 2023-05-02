@@ -28,7 +28,6 @@ const electionCandidateSchema = new Schema(
     },
     position: {
       type: String,
-      required: true,
     },
     biography: {
       type: String,
@@ -38,16 +37,19 @@ const electionCandidateSchema = new Schema(
       type: int,
       required: true,
     },
+    province:{
+      type: String,
+      required: true
+    },
     voting_number: [
 
         {
             election: {
                 type: String,
-                required: true
+                
             },
             number: {
                 type: Number,
-                required: true,
                 unique: true
             }
         }
@@ -56,12 +58,10 @@ const electionCandidateSchema = new Schema(
 
         {
             election: {
-                type: String,
-                required: true
+                type: String, 
             },
             count: {
                 type: Number,
-                required: true
             }
         }
     ],
