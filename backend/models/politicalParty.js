@@ -1,7 +1,9 @@
+// Import the mongoose module
 const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 
+// Define the schema
 const politicalPartySchema = new Schema({
     partyID: {
         type: Number,
@@ -47,6 +49,9 @@ const politicalPartySchema = new Schema({
         timestamps: true
     });
 
+
+// Create new model
 const PoliticalParty = mongoose.model("political_party", politicalPartySchema);
 
+// Export the model
 module.exports = PoliticalParty;
