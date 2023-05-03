@@ -8,7 +8,7 @@ const electionCandidateSchema = new Schema(
       type: String,
       required: true,
     },
-    phone_no: {
+    phoneNo: {
       type: String,
       required: true,
     },
@@ -19,7 +19,6 @@ const electionCandidateSchema = new Schema(
     },
     email: {
       type: String,
-      required: true,
       unique: true,
     },
     password: {
@@ -33,7 +32,7 @@ const electionCandidateSchema = new Schema(
       type: String,
       required: true,
     },
-    political_party_id: {
+    politicalPartyId: {
       type: Number,
       required: true,
     },
@@ -41,7 +40,7 @@ const electionCandidateSchema = new Schema(
       type: String,
       required: true
     },
-    voting_number: [
+    votingNumber: [
 
         {
             election: {
@@ -54,7 +53,7 @@ const electionCandidateSchema = new Schema(
             }
         }
     ],
-    vote_count: [
+    voteCount: [
 
         {
             election: {
