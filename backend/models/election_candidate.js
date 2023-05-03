@@ -8,7 +8,7 @@ const electionCandidateSchema = new Schema(
       type: String,
       required: true,
     },
-    phone_no: {
+    phoneNo: {
       type: String,
       required: true,
     },
@@ -19,7 +19,6 @@ const electionCandidateSchema = new Schema(
     },
     email: {
       type: String,
-      required: true,
       unique: true,
     },
     password: {
@@ -28,40 +27,40 @@ const electionCandidateSchema = new Schema(
     },
     position: {
       type: String,
-      required: true,
     },
     biography: {
       type: String,
       required: true,
     },
-    political_party_id: {
-      type: int,
+    politicalPartyId: {
+      type: Number,
       required: true,
     },
-    voting_number: [
+    province:{
+      type: String,
+      required: true
+    },
+    votingNumber: [
 
         {
             election: {
                 type: String,
-                required: true
+                
             },
             number: {
                 type: Number,
-                required: true,
                 unique: true
             }
         }
     ],
-    vote_count: [
+    voteCount: [
 
         {
             election: {
-                type: String,
-                required: true
+                type: String, 
             },
             count: {
                 type: Number,
-                required: true
             }
         }
     ],
@@ -74,6 +73,6 @@ const electionCandidateSchema = new Schema(
   }
 );
 
-const Candidate = mongoose.model("electionCandidate", electionCandidateSchema);
+const Candidate = mongoose.model("candidate", electionCandidateSchema);
 
 module.exports = Candidate;
