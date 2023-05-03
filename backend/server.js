@@ -6,6 +6,9 @@ const mongoose = require('mongoose');
 
 // Import the voterRoutes module
 const voterRoutes = require('./routes/voterRoutes');
+// Import the votingCenterRoutes module
+const votingCenterRoutes = require('./routes/votingCenterRoutes');
+
 
 // Import politicalPartyRoutes module
 const politicalPartyRoutes = require('./routes/politicalPartyRoutes');
@@ -22,7 +25,7 @@ app.use((req, res, next) => {
 });
 
 app.use("/api/v1/voters", voterRoutes);
-// app.use("/votingCenter", votingCenterRoutes);
+app.use("/api/v1/voting-centers", votingCenterRoutes);
 
 // Use politicalPartyRoutes module
 app.use("/api/v1/political-parties", politicalPartyRoutes);
