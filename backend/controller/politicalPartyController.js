@@ -7,6 +7,12 @@ const PoliticalPartyAuditTrail = require('../models/politicalPartyAuditTrail');
 // Import crypter module
 const Cryptr = require('cryptr');
 
+// Import stream module
+const stream = require("stream");
+
+// Import the googleapis module
+const { google } = require("googleapis");
+
 // Method to encrypt sensitive data
 async function encryptData(cryptr, phone_no, email, competitor_count, vote_results) {
     // Encrypt the given details
@@ -661,7 +667,7 @@ const uploadPhoto = async (req) => {
 
         // Google authentication
         const auth = new google.auth.GoogleAuth({
-            keyFile: "../googlekey.json",
+            keyFile: "./googlekey.json",
             scopes: ["https://www.googleapis.com/auth/drive"],
         });
 
