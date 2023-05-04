@@ -65,7 +65,7 @@ export default function PartyTable() {
     // Start of PartyTable component
     <>
       <center>
-        <Button variant="outlined" sx={{color: "#1565c0"}} href="#" className="relative bottom-[10px]">
+        <Button variant="outlined" sx={{color: "#1565c0"}} href="/political-parties/new" className="relative bottom-[10px]">
           ADD
         </Button>
       </center>
@@ -114,7 +114,7 @@ export default function PartyTable() {
                       size="medium"
                       sx={{ padding: "4px 4px 4px 4px" }}
                     >
-                      <EditIcon fontSize="inherit" sx={{ color: "#81c784" }} />
+                      <EditIcon fontSize="inherit" sx={{ color: "#42a5f5" }} />
                     </IconButton>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <ConfirmDialog partyID={row.partyID} />
