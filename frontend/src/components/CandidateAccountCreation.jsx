@@ -71,68 +71,92 @@ const CandidateAccountCreation = () => {
     watch,
     formState: { errors },
   } = useForm();
-  const onSubmit = async({name,phoneNo,nic,email,password,position,biography,province}) =>{
-    const response = await fetch('http://localhost:5000/api/v1/candidates/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({name,phoneNo,nic,email,password,position,biography,province}),
+  const onSubmit = async ({
+    name,
+    phoneNo,
+    nic,
+    email,
+    password,
+    position,
+    biography,
+    politicalPartyId,
+    province,
+    election,
+    number,
+  }) => {
+    const response = await fetch("http://localhost:5000/api/v1/candidates/", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name,
+        phoneNo,
+        nic,
+        email,
+        password,
+        position,
+        biography,
+        politicalPartyId,
+        province,
+        election,
+        number,
+      }),
     });
 
     const json = await response.json();
 
-      if (res.status === 200) {
-        // redirect
-        window.Location("https://www.youtube.com/watch?v=4MrbfGSFY2A&ab_channel=BeierLuo")
-      } else {
-        // display an error
-      }
-  }
+    if (response.status === 200) {
+      // redirect
+      console.log("DOne")
+    } else {
+      // display an error
+    }
+  };
 
   return (
     <div className="App__form">
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div style={{ marginBottom: "10px", width: "500px" }}>
+        <div style={{ marginBottom: "15px", width: "700px" }}>
           <TextField
-            id="outlined"
             name="name"
             label="Full Name"
             variant="outlined"
+            fullWidth
             {...register("name", { required: "*required." })}
             error={Boolean(errors.name)}
             helperText={errors.name?.message}
           />
         </div>
 
-        <div style={{ marginBottom: "10px", width: "700px" }}>
+        <div style={{ marginBottom: "15px", width: "700px" }}>
           <TextField
-            id="outlined"
             label="Phone Number"
             variant="outlined"
             name="phoneNo"
+            fullWidth
             {...register("phoneNo", { required: "*required." })}
             error={Boolean(errors.phoneNo)}
             helperText={errors.phoneNo?.message}
           />
         </div>
 
-        <div style={{ marginBottom: "10px", width: "700px" }}>
+        <div style={{ marginBottom: "15px", width: "700px" }}>
           <TextField
-            id="outlined"
             label="NIC"
             variant="outlined"
             name="nic"
+            fullWidth
             {...register("nic", { required: "*required." })}
             error={Boolean(errors.nic)}
             helperText={errors.nic?.message}
           />
         </div>
 
-        <div style={{ marginBottom: "10px", width: "700px" }}>
+        <div style={{ marginBottom: "15px", width: "700px" }}>
           <TextField
-            id="outlined"
             label="Email"
             variant="outlined"
             name="email"
+            fullWidth
             {...register("email", {
               required: "*required.",
               pattern: {
@@ -145,12 +169,12 @@ const CandidateAccountCreation = () => {
           />
         </div>
 
-        <div style={{ marginBottom: "10px", width: "700px" }}>
+        <div style={{ marginBottom: "15px", width: "700px" }}>
           <TextField
-            id="outlined"
             label="Password"
             variant="outlined"
             name="password"
+            fullWidth
             {...register("password", {
               required: "*required.",
               pattern: {
@@ -164,23 +188,23 @@ const CandidateAccountCreation = () => {
           />
         </div>
 
-        <div style={{ marginBottom: "10px", width: "700px" }}>
+        <div style={{ marginBottom: "15px", width: "700px" }}>
           <TextField
-            id="outlined"
             label="Position"
             variant="outlined"
             name="position"
+            fullWidth
             {...register("position")}
           />
         </div>
 
-        <div style={{ marginBottom: "10px", width: "700px" }}>
+        <div style={{ marginBottom: "15px", width: "700px" }}>
           <TextField
-            id="outlined"
             multiline
             label="Biography"
             variant="outlined"
             name="biography"
+            fullWidth
             {...register("biography", {
               required: "*required.",
             })}
@@ -189,13 +213,28 @@ const CandidateAccountCreation = () => {
           />
         </div>
 
-        <div>
+        <div style={{ marginBottom: "15px", width: "700px" }}>
           <TextField
-            id="outlined-select-currency-native"
+            multiline
+            label="political Party Id"
+            variant="outlined"
+            name="politicalPartyId"
+            fullWidth
+            {...register("politicalPartyId", {
+              required: "*required.",
+            })}
+            error={Boolean(errors.politicalPartyId)}
+            helperText={errors.politicalPartyId?.message}
+          />
+        </div>
+
+        <div style={{ marginBottom: "15px", width: "700px" }}>
+          <TextField
             select
             label="Province"
             name="province"
             defaultValue="Western Province"
+            fullWidth
             SelectProps={{
               native: true,
             }}
@@ -212,17 +251,17 @@ const CandidateAccountCreation = () => {
 
         <h1 style={{ marginBottom: "20px" }}>Voting Number</h1>
 
-        <div>
+        <div style={{ marginBottom: "10px", width: "700px" }}>
           <TextField
-            id="outlined-select-currency-native"
             select
+            style={{width:"325px", marginRight:"50px"}}
             label="Election"
             name="election"
             defaultValue="2023"
             SelectProps={{
               native: true,
             }}
-            {...register("zzzzzzzzzzzz")}
+            {...register("election")}
             helperText="Select The election"
           >
             {election.map((option) => (
@@ -233,10 +272,10 @@ const CandidateAccountCreation = () => {
           </TextField>
 
           <TextField
-            id="outlined"
             name="Number"
             label="number"
             variant="outlined"
+            style={{width:"325px"}}
             {...register("number")}
             error={Boolean(errors.number)}
             helperText={errors.number?.message}
@@ -249,17 +288,16 @@ const CandidateAccountCreation = () => {
           <input accept="image/*" type="file" />
         </div>
 
-
-
-
+        <div style={{marginTop:"50px",display: "flex", justifyContent:"center", alignItems: "center", width:"700px"}}>
         <Button
           variant="contained"
           color="primary"
           type="submit"
           className="btns"
         >
-          create new account
+          create new Candidate Account
         </Button>
+        </div>
       </form>
     </div>
   );

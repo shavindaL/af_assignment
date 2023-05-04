@@ -41,9 +41,9 @@ const addCandidate = async (req,res) =>{
         biography: req.body.biography,
         politicalPartyId: req.body.politicalPartyId,
         province: req.body.province,
-        votingNumber: req.body.votingNumber,
-        voteCount: req.body.voteCount,
-        photo: req.body.photo,
+        votingNumber: {election:req.body.election , number:req.body.number}
+        // voteCount: req.body.voteCount,
+        // photo: req.body.photo,
     })
     
     
@@ -51,10 +51,10 @@ const addCandidate = async (req,res) =>{
 
         await candidate.save()
         //response with status 200 if ok
-        res.status(200).send("Candidate added done")
+        res.status(200).json({message:"candidate added done"})
     } catch (error) {
         //response with 400 status if failed
-        res.status(400).send("Failed to add the candidate")
+        res.status(400).json({message:"Failed to add the candidate"})
         //print the error
         console.log(error.message)
     }

@@ -11,6 +11,8 @@ const votingCenterSchema = new Schema({
     votingCenterLocation: {
         type: String,
         required: true,
+        unique: true,
+        lowercase: true
     },
     voterCenterOfficialId: {
         type: String,
