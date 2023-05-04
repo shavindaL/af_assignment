@@ -6,10 +6,10 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { Avatar, IconButton } from "@mui/material";
+import { Avatar, Button, IconButton } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
-import DeleteIcon from "@mui/icons-material/Delete";
 import { useEffect, useState } from "react";
+import ConfirmDialog from "./ConfirmDialog";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -32,31 +32,6 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     border: 0,
   },
 }));
-
-// Function to delete a political party
-// async function handleDelete(partyID) {
-//   try {
-//     const res = await fetch(
-//       `http://localhost:5000/api/v1/political-parties/${partyID}`,
-//       {
-//         method: "DELETE",
-//         headers: {
-//           "Content-Type": "application/json",
-//         },
-//       }
-//     );
-
-//     const resMsg = await res.text();
-
-//     if (resMsg) {
-//       // Reload the page
-//       window.location.reload();
-//     }
-//   } catch (err) {
-//     // Print error message
-//     console.log(err.message);
-//   }
-// }
 
 export default function PartyTable() {
   // Array to hold political data
@@ -88,59 +63,68 @@ export default function PartyTable() {
 
   return (
     // Start of PartyTable component
+    <>
+      <center>
+        <Button variant="outlined" sx={{color: "#1565c0"}} href="#" className="relative bottom-[10px]">
+          ADD
+        </Button>
+      </center>
 
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 700 }} aria-label="customized table">
-        <TableHead>
-          <TableRow>
-            <StyledTableCell align="center">Logo</StyledTableCell>
-            <StyledTableCell align="center">ID</StyledTableCell>
-            <StyledTableCell align="center">Name</StyledTableCell>
-            <StyledTableCell align="center">Vote Results</StyledTableCell>
-            <StyledTableCell align="center"></StyledTableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows &&
-            rows.map((row) => (
-              <StyledTableRow key={row._id}>
-                <StyledTableCell component="th" scope="row" align="left">
-                  <Avatar
-                    align="center"
-                    sx={{ position: "relative", left: "25px" }}
-                  >
-                    <img
-                      src={row.logo}
-                      alt="logo"
-                      style={{
-                        borderRadius: "50%",
-                        height: "60px",
-                        width: "60px",
-                        alignItems: "center",
-                      }}
-                    />
-                  </Avatar>
-                </StyledTableCell>
-                <StyledTableCell align="center">{row.partyID}</StyledTableCell>
-                <StyledTableCell align="center">{row.name}</StyledTableCell>
-                <StyledTableCell align="center">
-                  {row.vote_results}
-                </StyledTableCell>
-                <StyledTableCell align="center">
-                  <IconButton size="medium" sx={{ padding: "4px 4px 4px 4px" }}>
-                    <EditIcon fontSize="inherit" sx={{ color: "#81c784" }} />
-                  </IconButton>
-                  &nbsp;&nbsp;&nbsp;&nbsp;
-                  <IconButton size="medium" sx={{ padding: "4px 4px 4px 4px" }}>
-                    <DeleteIcon fontSize="inherit" sx={{ color: "#ef5350" }} />
-                  </IconButton>
-                </StyledTableCell>
-              </StyledTableRow>
-            ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
-
+      <TableContainer component={Paper}>
+        <Table sx={{ minWidth: 700 }} aria-label="customized table">
+          <TableHead>
+            <TableRow>
+              <StyledTableCell align="center">Logo</StyledTableCell>
+              <StyledTableCell align="center">ID</StyledTableCell>
+              <StyledTableCell align="center">Name</StyledTableCell>
+              <StyledTableCell align="center">Vote Results</StyledTableCell>
+              <StyledTableCell align="center"></StyledTableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {rows &&
+              rows.map((row) => (
+                <StyledTableRow key={row._id}>
+                  <StyledTableCell component="th" scope="row" align="left">
+                    <Avatar
+                      align="center"
+                      sx={{ position: "relative", left: "25px" }}
+                    >
+                      <img
+                        src={row.logo}
+                        alt="logo"
+                        style={{
+                          borderRadius: "50%",
+                          height: "60px",
+                          width: "60px",
+                          alignItems: "center",
+                        }}
+                      />
+                    </Avatar>
+                  </StyledTableCell>
+                  <StyledTableCell align="center">
+                    {row.partyID}
+                  </StyledTableCell>
+                  <StyledTableCell align="center">{row.name}</StyledTableCell>
+                  <StyledTableCell align="center">
+                    {row.vote_results}
+                  </StyledTableCell>
+                  <StyledTableCell align="center">
+                    <IconButton
+                      size="medium"
+                      sx={{ padding: "4px 4px 4px 4px" }}
+                    >
+                      <EditIcon fontSize="inherit" sx={{ color: "#81c784" }} />
+                    </IconButton>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <ConfirmDialog partyID={row.partyID} />
+                  </StyledTableCell>
+                </StyledTableRow>
+              ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </>
     // End of PartyTable component
   );
 }
