@@ -109,13 +109,15 @@ export default function CandidateTable() {
                     {row.nic}
                   </StyledTableCell>
                   <StyledTableCell align="center">{row.name}</StyledTableCell>
-                  <StyledTableCell align="center">{row.name}</StyledTableCell>
+
                   <StyledTableCell align="center">
                     {row.politicalPartyId}
                   </StyledTableCell>
+                   
                   <StyledTableCell align="center">
                     {row.votingNumber[0].number}
                   </StyledTableCell>
+                  <StyledTableCell align="center">{10}</StyledTableCell> 
                   <StyledTableCell align="center">
                     <IconButton
                       size="medium"
@@ -124,7 +126,7 @@ export default function CandidateTable() {
                       <EditIcon fontSize="inherit" sx={{ color: "#42a5f5" }} />
                     </IconButton>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <ConfirmDialog partyID={row.partyID} />
+                    {/* <ConfirmDialog partyID={row.partyID} /> */}
                   </StyledTableCell>
                 </StyledTableRow>
               ))}
