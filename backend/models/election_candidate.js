@@ -13,7 +13,7 @@ const electionCandidateSchema = new Schema(
       required: true,
     },
     nic: {
-      type: Number,
+      type: String,
       required: true,
       unique: true,
     },
@@ -33,7 +33,7 @@ const electionCandidateSchema = new Schema(
       required: true,
     },
     politicalPartyId: {
-      type: Number,
+      type: String,
       required: true,
     },
     province:{
@@ -49,7 +49,6 @@ const electionCandidateSchema = new Schema(
             },
             number: {
                 type: Number,
-                unique: true
             }
         }
     ],
@@ -60,7 +59,7 @@ const electionCandidateSchema = new Schema(
                 type: String, 
             },
             count: {
-                type: Number,
+                type: String,
             }
         }
     ],
