@@ -1,4 +1,4 @@
-# **AF(3040) Group Project - Electronic Voting System**
+# **Application Frameworks (SE3040) Group Project - Electronic Voting System**
 
 ## Group Details
 
