@@ -1,8 +1,8 @@
 import {BrowserRouter,Route, Routes} from 'react-router-dom'
 import Home from './pages/Home'
-import CandidateLogin from './pages/CandidateLogin'
-import AdministratorLogin from './pages/AdministratorLogin'
-import ElectionResults from './pages/ElectionResults'
+import AdminDashboard from './pages/AdminDashboard'
+import PoliticalParties from './pages/PoliticalParties';
+import NewPoliticalParty from './pages/NewPoliticalParty';
 
 function App() {
 
@@ -11,13 +11,13 @@ function App() {
       <BrowserRouter>
       <Routes>
         <Route path='/' element={<Home />}/>
-        <Route path='/CandidateLogin' element={<CandidateLogin />}/>
-        <Route path='/AdministratorLogin' element={<AdministratorLogin />}/>
-        <Route path='/Electionresults' element={<ElectionResults />}/>
+        <Route path='/admin-dashboard' element={<AdminDashboard />} />
+        <Route path='/political-parties' element={<PoliticalParties />} />
+        <Route path='/political-parties/new' element={<NewPoliticalParty />} />
       </Routes>
       </BrowserRouter>
     </>
   )
 }
 
-export default App
+export default App;
