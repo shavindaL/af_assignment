@@ -9,12 +9,17 @@ const router = express.Router();
  */
 
 const {
+    
     getAllCandidates,
+    addCandidate
 
 } = require('../controller/candidateController');
 
 
 // Handle GET request at root
 router.get("/", getAllCandidates);
+
+//
+router.post("/",addCandidate)
 
 module.exports = router;
