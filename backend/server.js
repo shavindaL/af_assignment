@@ -4,6 +4,9 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 
+// Import cors module
+const cors = require('cors');
+
 // Import the voterRoutes module
 const voterRoutes = require('./routes/voterRoutes');
 // Import the votingCenterRoutes module
@@ -36,6 +39,11 @@ app.use((req, res, next) => {
     console.log(`${req.method} ${req.path}`);
     next();
 });
+
+// Use cors module
+app.use(cors({
+    origin: 'http://localhost',
+}));
 
 app.use("/api/v1/voters", voterRoutes);
 app.use("/api/v1/voting-centers", votingCenterRoutes);
