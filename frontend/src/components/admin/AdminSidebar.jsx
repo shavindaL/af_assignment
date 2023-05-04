@@ -15,22 +15,21 @@ export default function AdminSidebar() {
     // Start of AdminSidebar component
     <>
       {/* <div id="app" className="flex h-auto"> */}
-        <Sidebar className="h-auto" style={{ fontFamily: "Roboto" }} rootStyles={{backgroundColor: "#0d47a1"}}>
-          <Menu className="bg-[#0d47a1] h-[100vh]">
-            <MenuItem
-              icon={<Avatar>A</Avatar>}
-              onClick={() => {
-                collapseSidebar();
-              }}
-              style={{ textAlign: "center" }}
-              className="tracking-[1px] text-white hover:text-black h-auto"
-            >
-              ADMINISTRATOR
-            </MenuItem>
+      <Sidebar className="h-auto" style={{ fontFamily: "Roboto" }} rootStyles={{ backgroundColor: "#0d47a1" }}>
+        <Menu className="bg-[#0d47a1] h-[100vh]">
+          <MenuItem
+            icon={<Avatar>A</Avatar>}
+            onClick={() => {
+              collapseSidebar();
+            }}
+            style={{ textAlign: "center" }}
+            className="tracking-[1px] text-white hover:text-black h-auto"
+          >
+            ADMINISTRATOR
+          </MenuItem>
 
 
-            <Divider className="bg-white" />
-
+          <Divider className="bg-white" />
             <MenuItem
               icon={<DashboardIcon />}
               className="tracking-[1px] text-white hover:text-black"
@@ -55,21 +54,23 @@ export default function AdminSidebar() {
             >
               VOTERS
             </MenuItem>
+          <Link to={{ pathname: "../voting-center/new-account" }}>
             <MenuItem
               icon={<HowToVoteIcon />}
               className="tracking-[1px] text-white hover:text-black"
             >
               VOTING CENTERS
             </MenuItem>
-            <Divider className="bg-white" />
-            <MenuItem
-              icon={<LogoutIcon />}
-              className="tracking-[1px] text-white hover:text-black"
-            >
-              LOGOUT
-            </MenuItem>
-          </Menu>
-        </Sidebar>
+          </Link>
+          <Divider className="bg-white" />
+          <MenuItem
+            icon={<LogoutIcon />}
+            className="tracking-[1px] text-white hover:text-black"
+          >
+            LOGOUT
+          </MenuItem>
+        </Menu>
+      </Sidebar>
       {/* </div> */}
     </>
     // End of AdminSidebar component

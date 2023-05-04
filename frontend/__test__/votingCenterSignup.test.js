@@ -1,0 +1,1 @@
+const signup = require('../src/components/admin/VotingCenterAccountCreationForm')

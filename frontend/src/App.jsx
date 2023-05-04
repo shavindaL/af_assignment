@@ -19,15 +19,15 @@ function App() {
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/voting-center/new-account' element={<VotingCenterSignup />} />
-        <Route path='/admin-dashboard' element={<AdminDashboard />} />
-        <Route path='/political-parties' element={<PoliticalParties />} />
-        <Route path='/election-candidates' element={<ElectionCandidates />} />
-        <Route path='/political-parties/new' element={<NewPoliticalParty />} />
-        <Route path='/political-parties/:id' element={<EditPoliticalParty />} />
-        <Route path='/CandidateLogin' element={<CandidateLogin />}/>
-        <Route path='/AdministratorLogin' element={<AdministratorLogin />}/>
-        <Route path='/InquiryForm' element={<InquiryForm />}/>
-        <Route path='/ElectionReults' element={<ElectionResults />}/>
+          <Route path='/admin-dashboard' element={<AdminDashboard />} />
+          <Route path='/political-parties' element={<PoliticalParties />} />
+          <Route path='/election-candidates' element={<ElectionCandidates />} />
+          <Route path='/political-parties/new' element={<NewPoliticalParty />} />
+          <Route path='/political-parties/:id' element={<EditPoliticalParty />} />
+          <Route path='/CandidateLogin' element={<CandidateLogin />}/>
+          <Route path='/AdministratorLogin' element={<AdministratorLogin />}/>
+          <Route path='/InquiryForm' element={<InquiryForm />}/>
+          <Route path='/ElectionReults' element={<ElectionResults />}/>
       </Routes>
       </BrowserRouter>
     </>
