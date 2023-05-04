@@ -6,6 +6,8 @@ import PoliticalParties from './pages/PoliticalParties';
 import NewPoliticalParty from './pages/NewPoliticalParty';
 import CandidateLogin from './pages/candidateLogin';
 import AdministratorLogin from './pages/AdministratorLogin';
+import ElectionCandidates from './pages/ElectionCandidates';
+import EditPoliticalParty from './pages/EditPoliticalParty';
 
 function App() {
 
@@ -17,7 +19,9 @@ function App() {
           <Route path='/voting-center/new-account' element={<VotingCenterSignup />} />
         <Route path='/admin-dashboard' element={<AdminDashboard />} />
         <Route path='/political-parties' element={<PoliticalParties />} />
+        <Route path='/election-candidates' element={<ElectionCandidates />} />
         <Route path='/political-parties/new' element={<NewPoliticalParty />} />
+        <Route path='/political-parties/:id' element={<EditPoliticalParty />} />
         <Route path='/CandidateLogin' element={<CandidateLogin />}/>
         <Route path='/AdministratorLogin' element={<AdministratorLogin />}/>
         

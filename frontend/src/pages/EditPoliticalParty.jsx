@@ -1,11 +1,10 @@
 import { ProSidebarProvider } from "react-pro-sidebar";
 import AdminSidebar from "../components/admin/AdminSidebar";
-import PartyForm from "../components/admin/PartyForm";
+import EditPartyForm from "../components/admin/EditPartyForm";
 
-
-export default function NewPoliticalParty() {
+export default function EditPoliticalParty() {
   return (
-    // Start of NewPoliticalParty component
+    // Start of EditPoliticalParty component
     <div className="flex">
       <ProSidebarProvider>
         <AdminSidebar />
@@ -16,15 +15,16 @@ export default function NewPoliticalParty() {
           className="w-fit h-fit mt-[10px] flex text-[38px] font-[400]"
           style={{ fontFamily: "Roboto" }}
         >
-          New Political Party
+          Edit Political Party
         </p>
 
       
 
       </div>
 
-      <PartyForm />
+      <EditPartyForm partyID={window.location.pathname.split("/")[2]}/>
+
     </div>
-    // End of NewPoliticalParty component
+    // End of EditPoliticalParty component
   );
 }

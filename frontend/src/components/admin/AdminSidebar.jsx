@@ -47,7 +47,7 @@ export default function AdminSidebar() {
               icon={<HowToRegIcon />}
               className="tracking-[1px] text-white hover:text-black"
             >
-              CANDIDATES
+              <Link to="/election-candidates">CANDIDATES</Link>
             </MenuItem>
             <MenuItem
               icon={<PeopleAltIcon />}

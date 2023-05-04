@@ -38,7 +38,7 @@ router.patch("/:id", updateVoteResults);
 // Handle DELETE request at "/:id" URI
 router.delete("/:id", deletePoliticalParty);
 
-// Handle PATCH request at "/:id" URI
-router.patch("/:id", updatePhoto);
+// Handle POST request at "/:id" URI
+router.post("/logo/:id", updatePhoto);
 
 module.exports = router;
