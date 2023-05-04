@@ -63,12 +63,11 @@ const getAVotingCenter = async (req, res) => {
 */
 const signup = async (req, res) => {
 
-    const { votingCenterLocation, voterCenterOfficialId, voterCenterOfficialName, voterCenterContactNo, votingCenterPassowrd } = req.body;
-
+    const { votingCenterLocation, votingCenterOfficialId, votingCenterOfficialName, votingCenterContactNo, votingCenterPassowrd } = req.body;
 
     try {
         //* Check if all required data is entered
-        if (!votingCenterLocation || !voterCenterOfficialId || !voterCenterOfficialName || !voterCenterContactNo || !votingCenterPassowrd) {
+        if (!votingCenterLocation || !votingCenterOfficialId || !votingCenterOfficialName || !votingCenterContactNo || !votingCenterPassowrd) {
             throw Error("Please fill all details");
         }
 
@@ -96,9 +95,9 @@ const signup = async (req, res) => {
         const votingCenter = await VotingCenter.create({
             votingCenterId: newVotingCenterId,
             votingCenterLocation,
-            voterCenterOfficialId,
-            voterCenterOfficialName,
-            voterCenterContactNo,
+            votingCenterOfficialId,
+            votingCenterOfficialName,
+            votingCenterContactNo,
             votingCenterPassowrd: hash
         });
 
