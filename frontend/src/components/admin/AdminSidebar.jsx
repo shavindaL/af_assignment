@@ -59,7 +59,7 @@ export default function AdminSidebar() {
               icon={<HowToVoteIcon />}
               className="tracking-[1px] text-white hover:text-black"
             >
-              VOTING CENTERS
+              <Link to ="/voting-centers">VOTING CENTERS</Link>
             </MenuItem>
           </Link>
           <Divider className="bg-white" />
