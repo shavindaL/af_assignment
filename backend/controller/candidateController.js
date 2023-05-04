@@ -1,12 +1,12 @@
 const Candidate = require("../models/election_candidate");
 
-const getCandidates = (req, res) => {
-    res.status(200).json({success:"candidates"})
-}
+// const getCandidates = (req, res) => {
+//     res.status(200).json({success:"candidates"})
+// }
 
 
 //get all candidates
-const getAllCandidates = async (res,req) =>{
+const getAllCandidates =  async(req,res) =>{
     try {
         
         //get all candidates documents from candidate collection
@@ -35,20 +35,21 @@ const addCandidate = async (req,res) =>{
         name: req.body.name,
         phoneNo: req.body.phoneNo,
         nic: req.body.nic,
-        email: req.boy.email,
+        email: req.body.email,
         password: req.body.password,
         position: req.body.position,
-        biography: req.body.position,
+        biography: req.body.biography,
         politicalPartyId: req.body.politicalPartyId,
         province: req.body.province,
-        votingNumber: req.body,
-        photo: req.body
+        votingNumber: req.body.votingNumber,
+        voteCount: req.body.voteCount,
+        photo: req.body.photo,
     })
     
     
     try {
 
-        await Candidate.save()
+        await candidate.save()
         //response with status 200 if ok
         res.status(200).send("Candidate added done")
     } catch (error) {
@@ -83,7 +84,7 @@ const getCandidate = async (req, res) => {
 };
 module.exports ={
 
-    getCandidates,
+    // getCandidates,
     getAllCandidates,
     addCandidate,
     getCandidate

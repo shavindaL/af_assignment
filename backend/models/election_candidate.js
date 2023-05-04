@@ -13,7 +13,7 @@ const electionCandidateSchema = new Schema(
       required: true,
     },
     nic: {
-      type: Number,
+      type: String,
       required: true,
       unique: true,
     },
@@ -49,7 +49,6 @@ const electionCandidateSchema = new Schema(
             },
             number: {
                 type: Number,
-                unique: true
             }
         }
     ],
