@@ -107,22 +107,12 @@ export default function ConfirmDialog({ partyID }) {
           Are you sure?
         </BootstrapDialogTitle>
         <DialogContent dividers>
-          {/* <Typography gutterBottom>
-            Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-            dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta
-            ac consectetur ac, vestibulum at eros.
-          </Typography>
-          <Typography gutterBottom>
-            Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
-            Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor
-            auctor.
-          </Typography> */}
           <Typography paragraph style={{ fontFamily: "Roboto" }}>
             This is will permanantly delete your account. Are your sure?
           </Typography>
         </DialogContent>
         <DialogActions>
-          <Button autoFocus onClick={handleClose} style={{ color: "#81c784" }}>
+          <Button autoFocus onClick={handleClose} style={{ color: "#42a5f5" }}>
             NO
           </Button>
           <Button
