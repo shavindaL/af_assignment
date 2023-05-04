@@ -52,7 +52,7 @@ export default function AdminSidebar() {
               icon={<PeopleAltIcon />}
               className="tracking-[1px] text-white hover:text-black"
             >
-              VOTERS
+              <Link to="/voters">VOTERS</Link>
             </MenuItem>
           <Link to={{ pathname: "../voting-center/new-account" }}>
             <MenuItem
