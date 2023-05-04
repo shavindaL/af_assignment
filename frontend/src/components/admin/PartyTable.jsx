@@ -33,30 +33,6 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-// Function to delete a political party
-// async function handleDelete(partyID) {
-//   try {
-//     const res = await fetch(
-//       `http://localhost:5000/api/v1/political-parties/${partyID}`,
-//       {
-//         method: "DELETE",
-//         headers: {
-//           "Content-Type": "application/json",
-//         },
-//       }
-//     );
-
-//     const resMsg = await res.text();
-
-//     if (resMsg) {
-//       // Reload the page
-//       window.location.reload();
-//     }
-//   } catch (err) {
-//     // Print error message
-//     console.log(err.message);
-//   }
-// }
 
 export default function PartyTable() {
   // Array to hold political data
