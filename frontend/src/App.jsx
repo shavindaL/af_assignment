@@ -11,6 +11,7 @@ import ElectionResults from "./pages/ElectionResults";
 import ElectionCandidates from "./pages/ElectionCandidates";
 import EditPoliticalParty from "./pages/EditPoliticalParty";
 import Voters from "./pages/Voters";
+import VotingCenters from "./pages/VotingCenters";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path="/political-parties" element={<PoliticalParties />} />
           <Route path="/election-candidates" element={<ElectionCandidates />} />
           <Route path="/voters" element={<Voters />} />
+          <Route path="/voting-centers" element={<VotingCenters />} />
           <Route
             path="/political-parties/new"
             element={<NewPoliticalParty />}
