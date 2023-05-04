@@ -42,6 +42,7 @@ const addCandidate = async (req,res) =>{
         politicalPartyId: req.body.politicalPartyId,
         province: req.body.province,
         votingNumber: {election:req.body.election , number:req.body.number}
+        
         // voteCount: req.body.voteCount,
         // photo: req.body.photo,
     })
