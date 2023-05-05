@@ -53,7 +53,6 @@ export default function Navbar() {
             <MenuItem
               sx={{
                 my: 2,
-                color: "white",
                 display: "block",
                 color: "blue",
                 fontFamily: "roboto",
@@ -65,7 +64,6 @@ export default function Navbar() {
             <MenuItem
               sx={{
                 my: 2,
-                color: "white",
                 display: "block",
                 color: "blue",
                 fontFamily: "roboto",
@@ -77,13 +75,12 @@ export default function Navbar() {
             <MenuItem
               sx={{
                 my: 2,
-                color: "white",
                 display: "block",
                 color: "blue",
                 fontFamily: "roboto",
               }}
             >
-              <Link to="#">Home</Link>
+              <Link to="#">Parties</Link>
             </MenuItem>
           </Box>
 

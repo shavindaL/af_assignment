@@ -15,7 +15,7 @@ export default function AdminSidebar() {
     // Start of AdminSidebar component
     <>
       {/* <div id="app" className="flex h-auto"> */}
-      <Sidebar className="h-auto" style={{ fontFamily: "Roboto" }} rootStyles={{ backgroundColor: "#0d47a1" }}>
+      <Sidebar className="h-auto" style={{ fontFamily: "Roboto" , position:"fixed"}} rootStyles={{ backgroundColor: "#0d47a1" }}>
         <Menu className="bg-[#0d47a1] h-[100vh]">
           <MenuItem
             icon={<Avatar>A</Avatar>}
