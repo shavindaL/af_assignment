@@ -1,10 +1,10 @@
 import { ProSidebarProvider } from "react-pro-sidebar";
 import AdminSidebar from "../components/admin/AdminSidebar";
-import PartyTable from "../components/admin/PartyTable";
+import VotersTable from "../components/admin/VotersTable";
 
-export default function PoliticalParties() {
+export default function Voters() {
   return (
-    // Start of PoliticalParties component
+    // Start of ElectionCandidates component
     <>
       <div className="flex">
         <ProSidebarProvider>
@@ -16,17 +16,17 @@ export default function PoliticalParties() {
             className="w-fit h-fit mt-[10px] flex text-[38px] font-[400]"
             style={{ fontFamily: "Roboto" }}
           >
-            Political Parties
+            Voters
           </p>
 
           <div className="ml-[230px] mt-[40px] h-fit">
-            <PartyTable />
+            <VotersTable />
           </div>
 
 
         </div>
       </div>
     </>
-    // End of PoliticalParties component
+    // End of ElectionCandidates component
   );
 }

@@ -33,23 +33,22 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-export default function PartyTable() {
-  // Array to hold political data
+export default function VotingCenterTable() {
+  // Array to hold voting center data
   const [rows, setRows] = useState([]);
 
   // Use useEffect hook
   useEffect(() => {
-    // Method to get data of political parties
-    async function getPoltPartyData() {
+    // Method to get data of voting centers
+    async function getVotingCenterData() {
       try {
-        const res = await fetch(
-          "http://localhost:5000/api/v1/political-parties"
-        );
+        const res = await fetch("http://localhost:5000/api/v1/voting-centers");
         const data = await res.json();
 
         if (data) {
           //Set the state variable
-          setRows(data);
+          setRows(data.votingCenters);
+          console.log(data.votingCenters);
         }
       } catch (err) {
         // Print error message
@@ -57,15 +56,21 @@ export default function PartyTable() {
       }
     }
 
-    // Invoke getPoltPartyData method
-    getPoltPartyData();
+    // Invoke getVotingCenterData method
+    getVotingCenterData();
+
   }, []);
 
   return (
-    // Start of PartyTable component
+    // Start of VotingCenterTable component
     <>
       <center>
-        <Button variant="outlined" sx={{color: "#1565c0"}} href="/political-parties/new" className="relative bottom-[10px]">
+        <Button
+          variant="outlined"
+          sx={{ color: "#1565c0" }}
+          href="#"
+          className="relative bottom-[10px]"
+        >
           ADD
         </Button>
       </center>
@@ -74,10 +79,11 @@ export default function PartyTable() {
         <Table sx={{ minWidth: 700 }} aria-label="customized table">
           <TableHead>
             <TableRow>
-              <StyledTableCell align="center">Logo</StyledTableCell>
               <StyledTableCell align="center">ID</StyledTableCell>
-              <StyledTableCell align="center">Name</StyledTableCell>
-              <StyledTableCell align="center">Vote Results</StyledTableCell>
+              <StyledTableCell align="center">Location</StyledTableCell>
+              <StyledTableCell align="center">Offical ID</StyledTableCell>
+              <StyledTableCell align="center">Official Name</StyledTableCell>
+              <StyledTableCell align="center">Official Phone</StyledTableCell>
               <StyledTableCell align="center"></StyledTableCell>
             </TableRow>
           </TableHead>
@@ -86,7 +92,7 @@ export default function PartyTable() {
               rows.map((row) => (
                 <StyledTableRow key={row._id}>
                   <StyledTableCell component="th" scope="row" align="left">
-                    <Avatar
+                    {/* <Avatar
                       align="center"
                       sx={{ position: "relative", left: "25px" }}
                     >
@@ -100,25 +106,32 @@ export default function PartyTable() {
                           alignItems: "center",
                         }}
                       />
-                    </Avatar>
+                    </Avatar> */}
+                    {row.votingCenterId}
                   </StyledTableCell>
                   <StyledTableCell align="center">
-                    {row.partyID}
+                    {row.votingCenterLocation}
                   </StyledTableCell>
-                  <StyledTableCell align="center">{row.name}</StyledTableCell>
+
                   <StyledTableCell align="center">
-                    {row.vote_results}
+                    {row.voterCenterOfficialId}
+                  </StyledTableCell>
+
+                  <StyledTableCell align="center">
+                    {row.voterCenterOfficialName}
+                  </StyledTableCell>
+                  <StyledTableCell align="center">
+                    {row.voterCenterContactNo}
                   </StyledTableCell>
                   <StyledTableCell align="center">
                     <IconButton
                       size="medium"
                       sx={{ padding: "4px 4px 4px 4px" }}
-                      href={`/political-parties/${row.partyID}`}
                     >
                       <EditIcon fontSize="inherit" sx={{ color: "#42a5f5" }} />
                     </IconButton>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <ConfirmDialog partyID={row.partyID} />
+                    {/* <ConfirmDialog partyID={row.partyID} /> */}
                   </StyledTableCell>
                 </StyledTableRow>
               ))}
@@ -126,6 +139,6 @@ export default function PartyTable() {
         </Table>
       </TableContainer>
     </>
-    // End of PartyTable component
+    // End of VotingCenterTable component
   );
 }
