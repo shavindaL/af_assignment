@@ -12,6 +12,7 @@ import ElectionCandidates from "./pages/ElectionCandidates";
 import EditPoliticalParty from "./pages/EditPoliticalParty";
 import Voters from "./pages/Voters";
 import VotingCenters from "./pages/VotingCenters";
+import VotingCenterLogin from "./pages/VotingCenterLogin";
 
 function App() {
   return (
@@ -19,10 +20,8 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route
-            path="/voting-center/new-account"
-            element={<VotingCenterSignup />}
-          />
+          <Route path="/voting-center/new-account" element={<VotingCenterSignup />} />
+          <Route path="/voting-center/login" element={<VotingCenterLogin />} />
           <Route path="/admin-dashboard" element={<AdminDashboard />} />
           <Route path="/political-parties" element={<PoliticalParties />} />
           <Route path="/election-candidates" element={<ElectionCandidates />} />

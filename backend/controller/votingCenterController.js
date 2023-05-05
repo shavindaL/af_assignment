@@ -86,7 +86,7 @@ const signup = async (req, res) => {
             newVotingCenterId = 1
         }
         else {
-            newVotingCenterId = (lastVotingCenter[0].votingCenterId + 1)
+            newVotingCenterId = (Number(lastVotingCenter[0].votingCenterId) + 1)
         }
 
         const salt = await bcrypt.genSalt(10);
