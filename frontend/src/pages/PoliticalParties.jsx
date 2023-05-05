@@ -11,7 +11,7 @@ export default function PoliticalParties() {
           <AdminSidebar />
         </ProSidebarProvider>
 
-        <div className="ml-[30px] w-fit h-fit justify-center">
+        <div className="ml-[300px] w-fit h-fit justify-center">
           <p
             className="w-fit h-fit mt-[10px] flex text-[38px] font-[400]"
             style={{ fontFamily: "Roboto" }}
