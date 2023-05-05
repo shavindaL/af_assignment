@@ -67,7 +67,7 @@ export default function CandidateTable() {
         <Button
           variant="outlined"
           sx={{ color: "#1565c0" }}
-          href="#"
+          href="/election-candidates/candidate"
           className="relative bottom-[10px]"
         >
           ADD

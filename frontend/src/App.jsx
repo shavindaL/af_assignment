@@ -13,6 +13,8 @@ import EditPoliticalParty from "./pages/EditPoliticalParty";
 import Voters from "./pages/Voters";
 import VotingCenters from "./pages/VotingCenters";
 
+import AddCandidate from "./pages/AddCandidate";
+
 function App() {
   return (
     <>
@@ -24,6 +26,7 @@ function App() {
             element={<VotingCenterSignup />}
           />
           <Route path="/admin-dashboard" element={<AdminDashboard />} />
+          <Route path="/election-candidates/candidate" element={<AddCandidate/>} />
           <Route path="/political-parties" element={<PoliticalParties />} />
           <Route path="/election-candidates" element={<ElectionCandidates />} />
           <Route path="/voters" element={<Voters />} />

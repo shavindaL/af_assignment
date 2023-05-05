@@ -95,7 +95,7 @@ export default function AdminDashboard() {
           <AdminSidebar />
         </ProSidebarProvider>
 
-        <main className="ml-[30px] mt-[30px]">
+        <main className="ml-[300px] mt-[30px]">
           <p
             className="flex justify-center text-[38px] font-[400]"
             style={{ fontFamily: "Roboto" }}
