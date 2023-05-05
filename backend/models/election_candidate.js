@@ -17,6 +17,14 @@ const electionCandidateSchema = new Schema(
       required: true,
       unique: true,
     },
+    gender:{
+      type: String,
+      required: true,
+    },
+    dob:{
+      type: String,
+      // required: true,
+    },
     email: {
       type: String,
       unique: true,

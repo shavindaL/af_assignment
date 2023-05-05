@@ -1,5 +1,13 @@
 import React from "react";
+import dayjs from "dayjs";
+
 import TextField from "@mui/material/TextField";
+import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+
+import { useState } from "react";
 
 import {
   Button,
@@ -22,6 +30,21 @@ const election = [
   {
     value: "2019",
     label: "2019",
+  },
+];
+
+const gender = [
+  {
+    value: "Male",
+    label: "Male",
+  },
+  {
+    value: "Female",
+    label: "Femal",
+  },
+  {
+    value: "Other",
+    label: "Other",
   },
 ];
 
@@ -71,10 +94,19 @@ const CandidateAccountCreation = () => {
     watch,
     formState: { errors },
   } = useForm();
+
+  const [emailAlert, setEmailAlert] = useState("");
+  const [phoneAlert, setPhoneAlert] = useState("");
+
+  const [value, setValue] = useState(dayjs('2022-04-17'));
+
+
   const onSubmit = async ({
     name,
     phoneNo,
     nic,
+    gender,
+    // value,
     email,
     password,
     position,
@@ -84,6 +116,8 @@ const CandidateAccountCreation = () => {
     election,
     number,
   }) => {
+
+    console.log(name,value,gender)
     const response = await fetch("http://localhost:5000/api/v1/candidates/", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -91,6 +125,8 @@ const CandidateAccountCreation = () => {
         name,
         phoneNo,
         nic,
+        gender,
+        // dob,
         email,
         password,
         position,
@@ -102,18 +138,29 @@ const CandidateAccountCreation = () => {
       }),
     });
 
-    const json = await response.json();
+    const msg = await response.text();
 
-    if (response.status === 200) {
+    if (msg === "Sorry, this email is already taken") {
       // redirect
-      console.log("DOne")
+      setEmailAlert(msg);
+    } else if (msg === "Sorry, this NIC is already taken") {
+      setEmailAlert(msg);
     } else {
-      // display an error
+      setEmailAlert(msg);
+      // Reload the page
+      window.location.reload();
     }
   };
 
   return (
     <div className="App__form">
+      {/* {emailAlert || phoneAlert && <Alert severity="error">
+  <AlertTitle>Error</AlertTitle>
+  {emailAlert}<strong>check it out!</strong>
+</Alert>} */}
+
+      {emailAlert && <div class="text-danger mt-1 mb-3">{emailAlert}</div>}
+
       <form onSubmit={handleSubmit(onSubmit)}>
         <div style={{ marginBottom: "15px", width: "700px" }}>
           <TextField
@@ -139,7 +186,7 @@ const CandidateAccountCreation = () => {
           />
         </div>
 
-        <div style={{ marginBottom: "15px", width: "700px" }}>
+        {/* <div style={{ marginBottom: "15px", width: "700px" }}>
           <TextField
             label="NIC"
             variant="outlined"
@@ -149,6 +196,46 @@ const CandidateAccountCreation = () => {
             error={Boolean(errors.nic)}
             helperText={errors.nic?.message}
           />
+        </div> */}
+
+        <div style={{ marginBottom: "10px", width: "700px" }}>
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <DemoContainer components={["DatePicker"]}>
+              <TextField
+                label="NIC"
+                variant="outlined"
+                name="nic"
+                fullWidth
+                {...register("nic", { required: "*required." })}
+                error={Boolean(errors.nic)}
+                helperText={errors.nic?.message}
+              />
+              <TextField
+                select
+                style={{ width: "325px" }}
+                label="Gender"
+                name="gender"
+                defaultValue="Male"
+                SelectProps={{
+                  native: true,
+                }}
+                {...register("gender")}
+                helperText="Select The Gender"
+              >
+                {gender.map((option) => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </TextField>
+
+              <DatePicker
+                label="Date of Birth"
+                value={value}
+          onChange={(newValue) => setValue(newValue)}
+              />
+            </DemoContainer>
+          </LocalizationProvider>
         </div>
 
         <div style={{ marginBottom: "15px", width: "700px" }}>
@@ -254,7 +341,7 @@ const CandidateAccountCreation = () => {
         <div style={{ marginBottom: "10px", width: "700px" }}>
           <TextField
             select
-            style={{width:"325px", marginRight:"50px"}}
+            style={{ width: "325px", marginRight: "50px" }}
             label="Election"
             name="election"
             defaultValue="2023"
@@ -275,7 +362,7 @@ const CandidateAccountCreation = () => {
             name="Number"
             label="number"
             variant="outlined"
-            style={{width:"325px"}}
+            style={{ width: "325px" }}
             {...register("number")}
             error={Boolean(errors.number)}
             helperText={errors.number?.message}
@@ -288,15 +375,23 @@ const CandidateAccountCreation = () => {
           <input accept="image/*" type="file" />
         </div>
 
-        <div style={{marginTop:"50px",display: "flex", justifyContent:"center", alignItems: "center", width:"700px"}}>
-        <Button
-          variant="contained"
-          color="primary"
-          type="submit"
-          className="btns"
+        <div
+          style={{
+            marginTop: "50px",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            width: "700px",
+          }}
         >
-          create new Candidate Account
-        </Button>
+          <Button
+            variant="contained"
+            color="primary"
+            type="submit"
+            className="btns"
+          >
+            create new Candidate Account
+          </Button>
         </div>
       </form>
     </div>
