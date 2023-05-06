@@ -7,10 +7,10 @@ import TableRow from "@mui/material/TableRow";
 import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import Paper from "@mui/material/Paper";
 import { Alert, Button, IconButton } from "@mui/material";
-import EditIcon from "@mui/icons-material/Edit";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { auto } from "@popperjs/core";
+import { useVotingCenterAuthContext } from "../../hooks/useVotingCenterAuthContext";
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -40,6 +40,10 @@ export default function VotingCandidateTable() {
     const [votes, setVotes] = useState([])
     const [candidates, setCandidates] = useState();
     const [errorAlert, setErrorAlert] = useState(false)
+    const [successAlert, setSuccessAlert] = useState(false)
+
+    const { location } = useVotingCenterAuthContext();
+
 
     useEffect(() => {
         // Method to get data of election candidates
@@ -80,14 +84,41 @@ export default function VotingCandidateTable() {
         }
     }
 
-    useEffect(() => {
-        console.log(votes);
-    }, [votes])
+    const processVote = async () => {
+        const res = await fetch('http://localhost:5000/api/v1/vote', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ votes, location })
+        });
+
+        if (res.ok) {
+            setSuccessAlert(true)
+            setTimeout(() => {
+                window.location.replace("http://localhost:3000/voting-center/validate")
+            }
+                , 5000);
+        }
+    }
 
     return (
         <>
             <div className="mt-20">
-                {errorAlert ? <Alert severity="error">Maximum vote count reached.</Alert> : null}
+                <div className="w-fit mx-auto">{successAlert ? <Alert severity="success">Vote recorded successfully.</Alert> : null}</div>
+                <div className="w-fit mx-auto">{errorAlert ? <Alert severity="error">Maximum vote count reached.</Alert> : null}</div>
+                <div className="mx-10 my-12">
+                    <Button
+                        onClick={processVote}
+                        sx={{
+                            width: 300,
+                            height: 80,
+                            fontSize: 20,
+                            fontWeight: 900,
+                            borderRadius: 3
+                        }}
+                        variant="contained"
+                        size="large"
+                        type="button">Submit Vote</Button>
+                </div>
                 <TableContainer
                     component={Paper}
                     sx={{

@@ -12,6 +12,9 @@ const voterRoutes = require('./routes/voterRoutes');
 // Import the votingCenterRoutes module
 const votingCenterRoutes = require('./routes/votingCenterRoutes');
 
+const voteRoutes = require('./routes/voteRoutes');
+
+
 
 // Import politicalPartyRoutes module
 const politicalPartyRoutes = require('./routes/politicalPartyRoutes');
@@ -50,6 +53,7 @@ app.use(cors({
 
 app.use("/api/v1/voters", voterRoutes);
 app.use("/api/v1/voting-centers", votingCenterRoutes);
+app.use("/api/v1/vote", voteRoutes);
 
 // Use politicalPartyRoutes module
 app.use("/api/v1/political-parties", politicalPartyRoutes);
