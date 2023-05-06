@@ -15,6 +15,8 @@ import VotingCenters from "./pages/VotingCenters";
 import VotingCenterLogin from "./pages/VotingCenterLogin";
 import CandidateProfile from "./pages/CandidateProfile";
 import AddCandidate from "./pages/AddCandidate";
+import ValidateVoter from "./pages/ValidateVoter";
+import UpdateCandidates from "./pages/UpdateCandidates";
 
 
 function App() {
@@ -25,6 +27,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/voting-center/new-account" element={<VotingCenterSignup />} />
           <Route path="/voting-center/login" element={<VotingCenterLogin />} />
+          <Route path="/voting-center/validate" element={<ValidateVoter />} />
           <Route path="/admin-dashboard" element={<AdminDashboard />} />
           <Route path="/election-candidates/candidate" element={<AddCandidate/>} />
           <Route path="/political-parties" element={<PoliticalParties />} />
@@ -44,6 +47,7 @@ function App() {
           <Route path="/InquiryForm" element={<InquiryForm />} />
           <Route path="/ElectionResults" element={<ElectionResults />} />
           <Route path="/CandidateProfile" element={<CandidateProfile />} />
+          <Route path="/election-candidates/update/:id" element={<UpdateCandidates />} />
         </Routes>
       </BrowserRouter>
     </>

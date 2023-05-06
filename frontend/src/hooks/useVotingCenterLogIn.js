@@ -32,7 +32,7 @@ export const useLogin = () => {
             dispatch({ type: 'LOGIN', payload: json })
             setIsLoading(false);
             // Simulate an HTTP redirect:
-            window.location.replace("http://www.w3schools.com");
+            window.location.replace("http://localhost:3000/voting-center/validate");
         }
     }
 

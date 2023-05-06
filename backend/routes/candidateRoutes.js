@@ -11,13 +11,17 @@ const router = express.Router();
 const {
     
     getAllCandidates,
-    addCandidate
+    addCandidate,
+    getCandidate
 
 } = require('../controller/candidateController');
 
 
 // Handle GET request at root
 router.get("/", getAllCandidates);
+
+router.get("/:id", getCandidate );
+
 
 //
 router.post("/",addCandidate)
