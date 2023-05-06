@@ -13,8 +13,8 @@ const {
     getAllCandidates,
     addCandidate,
     getCandidate,
-    updateCandidate
-
+    updateCandidate,
+    getCandidatesForAParty
 } = require('../controller/candidateController');
 
 
@@ -29,5 +29,9 @@ router.post("/",addCandidate)
 
 // Handle GET request at "/:id" URI
 router.get("/:id", getCandidate);
+
+
+//
+router.get("/party/:id",getCandidatesForAParty)
 
 module.exports = router;

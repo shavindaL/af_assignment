@@ -164,18 +164,42 @@ const addCandidate = async (req, res) => {
 const getCandidate = async (req, res) => {
   try {
     // Find the particular document
-    const candidate = await Candidate.findOne({ nic: req.params.id });
+    const candidate = await Candidate.findOne({ nic: req.params.nic });
 
     // Respond with status code 200 (OK) if successful
-    res.status(200).send(candidate);
+    res.status(200).json(candidate);
   } catch (err) {
     // Respond with status code 400 (Bad Request) if unsuccessful
-    res.status(400).send("Failed to find candidate");
+    res.status(400).json("Failed to find candidate");
 
     // Print the error message
     console.log(err.message);
   }
 };
+
+
+
+//get candidate by party id
+const getCandidatesForAParty = async (req, res) => {
+  try {
+
+    const politicalPartyId = req.params.id;
+    
+    // Find the particular document
+    const candidate = await Candidate.find({ politicalPartyId :  politicalPartyId});
+// console.log(candidate)
+    // Respond with status code 200 (OK) if successful
+    res.status(200).send(candidate);
+  } catch (err) {
+    // Respond with status code 400 (Bad Request) if unsuccessful
+    res.status(400).send("Failed to find candidates");
+
+    // Print the error message
+    console.log(err.message);
+  }
+};
+
+
 
 const updateCandidate = async (req, res) => {
   
@@ -202,5 +226,6 @@ module.exports = {
   getAllCandidates,
   addCandidate,
   getCandidate,
+  getCandidatesForAParty,
   updateCandidate
 };
