@@ -19,6 +19,9 @@ const politicalPartyRoutes = require('./routes/politicalPartyRoutes');
 // Import candidateRoutes module
 const candidateRoutes = require('./routes/candidateRoutes');
 
+// Import adminRoutes module
+const adminRoutes = require('./routes/adminRoutes');
+
 // Import multer module
 const multer = require('multer');
 const storage = multer.memoryStorage();
@@ -53,6 +56,9 @@ app.use("/api/v1/political-parties", politicalPartyRoutes);
 
 // Use candidateRoutes module
 app.use("/api/v1/candidates", candidateRoutes);
+
+// Use adminRoutes module
+app.use("/", adminRoutes);
 
 //* Connect to db
 mongoose
