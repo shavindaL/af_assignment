@@ -67,7 +67,7 @@ const electionCandidateSchema = new Schema(
                 type: String, 
             },
             count: {
-                type: String,
+                type: Number,
             }
         }
     ],
