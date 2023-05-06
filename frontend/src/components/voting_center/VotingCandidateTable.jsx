@@ -94,6 +94,7 @@ export default function VotingCandidateTable() {
         if (res.ok) {
             setSuccessAlert(true)
             setTimeout(() => {
+                localStorage.removeItem('validate')
                 window.location.replace("http://localhost:3000/voting-center/validate")
             }
                 , 5000);
