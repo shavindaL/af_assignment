@@ -12,7 +12,8 @@ const {
     
     getAllCandidates,
     addCandidate,
-    getCandidate
+    getCandidate,
+    updateCandidate
 
 } = require('../controller/candidateController');
 
@@ -20,7 +21,7 @@ const {
 // Handle GET request at root
 router.get("/", getAllCandidates);
 
-router.get("/:id", getCandidate );
+router.put("/:id", updateCandidate );
 
 
 //
