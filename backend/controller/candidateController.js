@@ -22,10 +22,20 @@ const getAllCandidates = async (req, res) => {
   try {
     //get all candidates documents from candidate collection
     const candidates = await Candidate.find();
+    
+    const cryptor = new Cryptr(process.env.SECRET_KEY);
 
-    if (candidates) {
+    // decrypt password for each candidate
+    const decryptedCandidates = candidates.map((candidate) => {
+      return {
+        ...candidate.toObject(),
+        password: cryptor.decrypt(candidate.password)
+      };
+    });
+
+    if (decryptedCandidates) {
       //response with status 200 if ok
-      res.status(200).send(candidates);
+      res.status(200).send(decryptedCandidates);
     } else {
       //response with 400 status if failed
       res.status(400).send("Failed to get candidates");
@@ -164,7 +174,9 @@ const addCandidate = async (req, res) => {
 const getCandidate = async (req, res) => {
   try {
     // Find the particular document
-    const candidate = await Candidate.findOne({ nic: req.params.id });
+    const candidate = await Candidate.findOne({ _id: req.params.id });
+    const cryptor = new Cryptr (process.env.SECRET_KEY)
+    candidate.password = cryptor.decrypt(candidate.password);
 
     // Respond with status code 200 (OK) if successful
     res.status(200).send(candidate);
