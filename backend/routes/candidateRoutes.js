@@ -26,4 +26,7 @@ router.get("/:id", getCandidate );
 //
 router.post("/",addCandidate)
 
+// Handle GET request at "/:id" URI
+router.get("/:id", getCandidate);
+
 module.exports = router;
