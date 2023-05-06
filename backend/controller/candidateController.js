@@ -164,7 +164,7 @@ const addCandidate = async (req, res) => {
 const getCandidate = async (req, res) => {
   try {
     // Find the particular document
-    const candidate = await Candidate.findOne({ nic: req.params.nic });
+    const candidate = await Candidate.findOne({ nic: req.params.id });
 
     // Respond with status code 200 (OK) if successful
     res.status(200).json(candidate);

@@ -7,6 +7,10 @@ import { useLogin } from "../../hooks/useVotingCenterLogIn";
 export default function LoginForm() {
 
     const [votingCenters, setVotingCenters] = useState([]);
+    const [selectedItems, setSelectedItems] = useState([]);
+    const [errorAlert, setErrorAlert] = useState(false)
+
+
 
     useEffect(() => {
         const getData = async () => {
@@ -19,6 +23,27 @@ export default function LoginForm() {
 
         getData()
     }, [])
+
+
+    const handleClick = (center) => {
+
+        // Check if the clicked item is already selected
+        if (selectedItems.includes(center)) {
+            setErrorAlert(false)
+            // If it is, remove it from the array of selected items
+            setSelectedItems(selectedItems.filter(selectedItem => selectedItem !== center));
+        } else {
+            // If it's not, add it to the array of selected items
+            if (selectedItems.length === 0) {
+                setErrorAlert(false)
+                setSelectedItems([...selectedItems, center]);
+                setLocation(center.votingCenterLocation);
+            }
+            else {
+                setErrorAlert(true)
+            }
+        }
+    }
 
     const [location, setLocation] = useState("");
     const [password, setPassword] = useState("");
@@ -82,6 +107,13 @@ export default function LoginForm() {
 
                 <h1 className="text-center text-4xl">{page == 0 ? "Select Province" : "Enter Password"}</h1>
             </div>
+            <div className="w-96 mx-auto mt-10"> 
+                {errorAlert && <Alert severity="error">Remove previous selected location to select new location.</Alert>}
+                {error && page === 1 && <Alert severity="error">{error}</Alert>}
+                {isLoading ? <div className="mx-auto">
+                    <CircularProgress />
+                </div> : null}
+            </div>
             <form onSubmit={handleSubmit}>
                 {page === 0 ? <div className="ml-20 w-fit mt-10">
                     <FormControl>
@@ -89,8 +121,11 @@ export default function LoginForm() {
                             {votingCenters && votingCenters.map(votingCenter =>
                                 <Grid item xs={12} sm={6} md={4} lg={4} key={votingCenter.votingCenterId}>
                                     <Button
-                                        variant="contained"
-                                        onClick={() => { setLocation(votingCenter.votingCenterLocation) }}
+                                        variant={selectedItems.includes(votingCenter) ? "outlined" : "contained"}
+                                        onClick={() => {
+
+                                            handleClick(votingCenter);
+                                        }}
                                         sx={{
                                             width: 500,
                                             height: 120,
@@ -166,10 +201,6 @@ export default function LoginForm() {
                             >
                                 Login
                             </Button>}
-                        {error && page === 1 && <Alert severity="error">{error}</Alert>}
-                        {isLoading ? <div className="mx-auto">
-                            <CircularProgress />
-                        </div> : null}
                     </Grid>
                 </Grid>
             </form>

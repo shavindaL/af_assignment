@@ -3,6 +3,7 @@ import Navbar from "../components/voting_center/NavBar";
 import { FormControl } from "@mui/base";
 import { useState } from "react";
 import { auto } from "@popperjs/core";
+import { VotingCenterAuthContextProvider } from "../context/VotingCenterAuthContext";
 
 
 export default function ValidateVoter() {
@@ -43,55 +44,57 @@ export default function ValidateVoter() {
 
     return (
         <>
-            <Navbar />
-            <div className="mt-16">
-                <form onSubmit={handleSubmit}>
-                    <FormControl>
-                        <div>
-                            <h1 className="text-center text-4xl">Enter NIC</h1>
-                        </div>
-                        <div className="flex mx-auto w-fit h-[200px] items-center ">
-                            <TextField
-                                onChange={e => { setNic(e.target.value) }}
-                                label="NIC"
-                                sx={{
-                                    marginTop: 2,
-                                    width: 900,
-                                }}
-                                type="text"
-                            />
-                        </div>
-                        {alert ?
-                            <Alert
-                                sx={{
-                                    width: 500,
-                                    marginX: auto,
-                                    fontSize: 28
-                                }}
-                                severity="error">Invalid NIC</Alert> : null}
-                        {emptyAlert ?
-                            <Alert
-                                sx={{
-                                    width: 500,
-                                    marginX: auto,
-                                    fontSize: 28
-                                }}
-                                severity="error">NIC Field must be filled</Alert> : null}
-                        <div className="flex mx-auto w-fit items-center mt-10">
-                            <Button
-                                type="submit"
-                                variant="contained"
-                                sx={{
-                                    width: 300,
-                                    height: 80,
-                                    fontSize: 24,
-                                    fontWeight: 700,
-                                    borderRadius: 5
-                                }}>Validate</Button>
-                        </div>
-                    </FormControl>
-                </form>
-            </div>
+            <VotingCenterAuthContextProvider>
+                <Navbar />
+                <div className="mt-16">
+                    <form onSubmit={handleSubmit}>
+                        <FormControl>
+                            <div>
+                                <h1 className="text-center text-4xl">Enter NIC</h1>
+                            </div>
+                            <div className="flex mx-auto w-fit h-[200px] items-center ">
+                                <TextField
+                                    onChange={e => { setNic(e.target.value) }}
+                                    label="NIC"
+                                    sx={{
+                                        marginTop: 2,
+                                        width: 900,
+                                    }}
+                                    type="text"
+                                />
+                            </div>
+                            {alert ?
+                                <Alert
+                                    sx={{
+                                        width: 500,
+                                        marginX: auto,
+                                        fontSize: 28
+                                    }}
+                                    severity="error">Invalid NIC</Alert> : null}
+                            {emptyAlert ?
+                                <Alert
+                                    sx={{
+                                        width: 500,
+                                        marginX: auto,
+                                        fontSize: 28
+                                    }}
+                                    severity="error">NIC Field must be filled</Alert> : null}
+                            <div className="flex mx-auto w-fit items-center mt-10">
+                                <Button
+                                    type="submit"
+                                    variant="contained"
+                                    sx={{
+                                        width: 300,
+                                        height: 80,
+                                        fontSize: 24,
+                                        fontWeight: 700,
+                                        borderRadius: 5
+                                    }}>Validate</Button>
+                            </div>
+                        </FormControl>
+                    </form>
+                </div>
+            </VotingCenterAuthContextProvider>
         </>
     )
 }
