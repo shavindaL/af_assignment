@@ -11,7 +11,8 @@ const router = express.Router();
 const {
     
     getAllCandidates,
-    addCandidate
+    addCandidate,
+    getCandidatesForAParty,
 
 } = require('../controller/candidateController');
 
@@ -21,5 +22,9 @@ router.get("/", getAllCandidates);
 
 //
 router.post("/",addCandidate)
+
+
+//
+router.get("/party/:id",getCandidatesForAParty)
 
 module.exports = router;

@@ -56,7 +56,7 @@ const electionCandidateSchema = new Schema(
                 
             },
             number: {
-                type: Number,
+                type: String,
             }
         }
     ],
