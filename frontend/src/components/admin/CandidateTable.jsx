@@ -10,6 +10,7 @@ import { Avatar, Button, IconButton } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import { useEffect, useState } from "react";
 import ConfirmDialog from "./ConfirmDialog";
+import { Link } from "react-router-dom";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -115,18 +116,20 @@ export default function CandidateTable() {
                   <StyledTableCell align="center">
                     {row.politicalPartyId}
                   </StyledTableCell>
-                   
+
                   <StyledTableCell align="center">
                     {row.votingNumber[0].number}
                   </StyledTableCell>
-                  <StyledTableCell align="center">{10}</StyledTableCell> 
+                  <StyledTableCell align="center">{10}</StyledTableCell>
                   <StyledTableCell align="center">
-                    <IconButton
-                      size="medium"
-                      sx={{ padding: "4px 4px 4px 4px" }}
-                    >
-                      <EditIcon fontSize="inherit" sx={{ color: "#42a5f5" }} />
-                    </IconButton>
+                    <Link to={{ pathname: `../election-candidates/update/${row.nic}` }}>
+                      <IconButton
+                        size="medium"
+                        sx={{ padding: "4px 4px 4px 4px" }}
+                      >
+                        <EditIcon fontSize="inherit" sx={{ color: "#42a5f5" }} />
+                      </IconButton>
+                    </Link>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     {/* <ConfirmDialog partyID={row.partyID} /> */}
                   </StyledTableCell>

@@ -4,13 +4,13 @@ const Cryptr = require('cryptr');
 
 
 async function encryptData(cryptr, password) {
-    // Encrypt the given details
-    password = await cryptr.encrypt(password);
+  // Encrypt the given details
+  password = await cryptr.encrypt(password);
 
-    // Return the encrypted data
-    return {
-        password
-    }
+  // Return the encrypted data
+  return {
+    password
+  }
 }
 
 // const getCandidates = (req, res) => {
@@ -102,16 +102,16 @@ const addCandidate = async (req, res) => {
 
     if (isCandidateExists === false) {
       // Variable to hold the last document in the collection
-    //   let lastDoc = await Candidate.find().limit(1).sort({ $natural: -1 });
+      //   let lastDoc = await Candidate.find().limit(1).sort({ $natural: -1 });
 
-    //   // Variable to hold the partyID of the last document in the collection
-    //   let lastDocPartyID;
+      //   // Variable to hold the partyID of the last document in the collection
+      //   let lastDocPartyID;
 
-    //   if (lastDoc.length !== 0) {
-    //     lastDocPartyID = await lastDoc[0].partyID;
-    //   } else {
-    //     lastDocPartyID = 0;
-    //   }
+      //   if (lastDoc.length !== 0) {
+      //     lastDocPartyID = await lastDoc[0].partyID;
+      //   } else {
+      //     lastDocPartyID = 0;
+      //   }
 
       // Encrypt sensitive data
       // const { nic, password } = await encryptData(
@@ -121,7 +121,7 @@ const addCandidate = async (req, res) => {
 
       const { password } = await encryptData(
         cryptr, req.body.password
-    );
+      );
 
       // Create new document if isCandidateExists variable is false
 
@@ -167,10 +167,10 @@ const getCandidate = async (req, res) => {
     const candidate = await Candidate.findOne({ nic: req.params.nic });
 
     // Respond with status code 200 (OK) if successful
-    res.status(200).send(candidate);
+    res.status(200).json(candidate);
   } catch (err) {
     // Respond with status code 400 (Bad Request) if unsuccessful
-    res.status(400).send("Failed to find candidate");
+    res.status(400).json("Failed to find candidate");
 
     // Print the error message
     console.log(err.message);
@@ -200,10 +200,32 @@ const getCandidatesForAParty = async (req, res) => {
 };
 
 
+
+const updateCandidate = async (req, res) => {
+  
+  const updateCandidate = ({
+    name: req.body.name,
+    phoneNo: req.body.phoneNo,
+    nic: req.body.nic,
+    gender: req.body.gender,
+    email: req.body.email,
+    position: req.body.position,
+    biography: req.body.biography,
+    politicalPartyId: req.body.politicalPartyId,
+    province: req.body.province,
+  });
+
+  Candidate
+    .findOneAndUpdate({ nic: req.params.id }, updateCandidate)
+    .then(candidate => res.status(200).json(candidate))
+    .catch(err => res.status(400).json(err.message))
+
+}
 module.exports = {
   // getCandidates,
   getAllCandidates,
   addCandidate,
   getCandidate,
-  getCandidatesForAParty
+  getCandidatesForAParty,
+  updateCandidate
 };

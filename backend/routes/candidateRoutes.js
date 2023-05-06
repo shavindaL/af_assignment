@@ -13,13 +13,16 @@ const {
     getAllCandidates,
     addCandidate,
     getCandidate,
-    getCandidatesForAParty,
-
+    updateCandidate,
+    getCandidatesForAParty
 } = require('../controller/candidateController');
 
 
 // Handle GET request at root
 router.get("/", getAllCandidates);
+
+router.put("/:id", updateCandidate );
+
 
 //
 router.post("/",addCandidate)

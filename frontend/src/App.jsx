@@ -18,6 +18,8 @@ import CusPoliticalPartiesPage from "./pages/CusPoliticalPartiesPage";
 import CusPoliticalParty from "./pages/CusPoliticalParty";
 
 import AddCandidate from "./pages/AddCandidate";
+import ValidateVoter from "./pages/ValidateVoter";
+import UpdateCandidates from "./pages/UpdateCandidates";
 
 
 function App() {
@@ -28,6 +30,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/voting-center/new-account" element={<VotingCenterSignup />} />
           <Route path="/voting-center/login" element={<VotingCenterLogin />} />
+          <Route path="/voting-center/validate" element={<ValidateVoter />} />
           <Route path="/admin-dashboard" element={<AdminDashboard />} />
           <Route path="/election-candidates/candidate" element={<AddCandidate/>} />
           <Route path="/political-parties" element={<PoliticalParties />} />
@@ -51,6 +54,7 @@ function App() {
 
           <Route path="/political_parties" element={<CusPoliticalPartiesPage />} />
           <Route path="/political_parties/:id" element={<CusPoliticalParty />} />
+          <Route path="/election-candidates/update/:id" element={<UpdateCandidates />} />
         </Routes>
       </BrowserRouter>
     </>
