@@ -12,6 +12,7 @@ const {
     
     getAllCandidates,
     addCandidate,
+    getCandidate,
     getCandidatesForAParty,
 
 } = require('../controller/candidateController');
@@ -22,6 +23,9 @@ router.get("/", getAllCandidates);
 
 //
 router.post("/",addCandidate)
+
+// Handle GET request at "/:id" URI
+router.get("/:id", getCandidate);
 
 
 //

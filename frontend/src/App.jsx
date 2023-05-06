@@ -12,10 +12,13 @@ import ElectionCandidates from "./pages/ElectionCandidates";
 import EditPoliticalParty from "./pages/EditPoliticalParty";
 import Voters from "./pages/Voters";
 import VotingCenters from "./pages/VotingCenters";
+import VotingCenterLogin from "./pages/VotingCenterLogin";
+import CandidateProfile from "./pages/CandidateProfile";
 import CusPoliticalPartiesPage from "./pages/CusPoliticalPartiesPage";
 import CusPoliticalParty from "./pages/CusPoliticalParty";
 
 import AddCandidate from "./pages/AddCandidate";
+
 
 function App() {
   return (
@@ -23,10 +26,8 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route
-            path="/voting-center/new-account"
-            element={<VotingCenterSignup />}
-          />
+          <Route path="/voting-center/new-account" element={<VotingCenterSignup />} />
+          <Route path="/voting-center/login" element={<VotingCenterLogin />} />
           <Route path="/admin-dashboard" element={<AdminDashboard />} />
           <Route path="/election-candidates/candidate" element={<AddCandidate/>} />
           <Route path="/political-parties" element={<PoliticalParties />} />
@@ -44,6 +45,8 @@ function App() {
           <Route path="/CandidateLogin" element={<CandidateLogin />} />
           <Route path="/AdministratorLogin" element={<AdministratorLogin />} />
           <Route path="/InquiryForm" element={<InquiryForm />} />
+          <Route path="/ElectionResults" element={<ElectionResults />} />
+          <Route path="/CandidateProfile" element={<CandidateProfile />} />
           <Route path="/ElectionReults" element={<ElectionResults />} />
 
           <Route path="/political_parties" element={<CusPoliticalPartiesPage />} />

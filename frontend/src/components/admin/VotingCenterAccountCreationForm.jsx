@@ -1,6 +1,7 @@
 import {
     Alert,
     Button,
+    CircularProgress,
     FormControl,
     InputLabel,
     MenuItem,
@@ -28,6 +29,10 @@ export default function AccountCreationForm() {
     const [mismatchAlert, setMismatchAlert] = useState(false)
 
     const [isValid, setIsValid] = useState(false)
+
+    const [error, setError] = useState(null);
+    const [isLoading, setIsLoading] = useState(false);
+
 
     //* Check enterd data is valid
     const validateData = () => {
@@ -94,9 +99,6 @@ export default function AccountCreationForm() {
             }
 
         }
-
-
-
     }
 
 
@@ -105,6 +107,8 @@ export default function AccountCreationForm() {
         validateData();
 
         if (isValid) {
+            setIsLoading(true);
+
             const votingCenter = {
                 votingCenterLocation: location,
                 votingCenterOfficialId: officialId,
@@ -113,7 +117,6 @@ export default function AccountCreationForm() {
                 votingCenterPassowrd: password
             }
 
-            console.log(votingCenter);
 
             const res = await fetch("http://localhost:5000/api/v1/voting-centers/signup", {
                 method: "POST",
@@ -123,12 +126,18 @@ export default function AccountCreationForm() {
                 body: JSON.stringify(votingCenter)
             });
 
-            console.log(res);
-            if (res.ok) {
-                alert("Okay")
+            const json = await res.json()
+
+
+            if (!res.ok) {
+                setIsLoading(false);
+                setError(json.error)
             }
 
-
+            if (res.ok) {
+                setIsLoading(false);
+                alert("Okay")
+            }
         }
     };
 
@@ -194,10 +203,16 @@ export default function AccountCreationForm() {
                         onChange={(e) => setConfirmPassword(e.target.value)}
                     />
                     {mismatchAlert ? <Alert severity="error">Passwords mismatch.</Alert> : null}
-                    <Button sx={{ marginTop: 2, }} type="submit">
-                        Submit
-                    </Button>
+                    {!isLoading ?
+                        <Button sx={{ marginTop: 2, }} type="submit">
+                            Submit
+                        </Button>
+                        :
+                        <div className="mx-auto">
+                            <CircularProgress />
+                        </div>}
                 </FormControl>
+                {error && <Alert severity="error">{error}</Alert>}
             </form>
         </div>
     );
