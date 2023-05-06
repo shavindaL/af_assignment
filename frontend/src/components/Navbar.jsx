@@ -58,7 +58,7 @@ export default function Navbar() {
                 fontFamily: "roboto",
               }}
             >
-              <Link to="#">Home</Link>
+              <Link to="/">Home</Link>
             </MenuItem>
 
             <MenuItem
@@ -80,7 +80,7 @@ export default function Navbar() {
                 fontFamily: "roboto",
               }}
             >
-              <Link to="#">Parties</Link>
+              <Link to="/political_parties">Parties</Link>
             </MenuItem>
           </Box>
 

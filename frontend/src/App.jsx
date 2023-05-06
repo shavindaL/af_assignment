@@ -14,6 +14,9 @@ import Voters from "./pages/Voters";
 import VotingCenters from "./pages/VotingCenters";
 import VotingCenterLogin from "./pages/VotingCenterLogin";
 import CandidateProfile from "./pages/CandidateProfile";
+import CusPoliticalPartiesPage from "./pages/CusPoliticalPartiesPage";
+import CusPoliticalParty from "./pages/CusPoliticalParty";
+
 import AddCandidate from "./pages/AddCandidate";
 
 
@@ -44,6 +47,10 @@ function App() {
           <Route path="/InquiryForm" element={<InquiryForm />} />
           <Route path="/ElectionResults" element={<ElectionResults />} />
           <Route path="/CandidateProfile" element={<CandidateProfile />} />
+          <Route path="/ElectionReults" element={<ElectionResults />} />
+
+          <Route path="/political_parties" element={<CusPoliticalPartiesPage />} />
+          <Route path="/political_parties/:id" element={<CusPoliticalParty />} />
         </Routes>
       </BrowserRouter>
     </>
