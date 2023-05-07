@@ -67,7 +67,7 @@ export default function CusPartyCandidates() {
     // Start of CandidateTable component
     <>
 
-      <TableContainer component={Paper} >
+      <TableContainer component={Paper} sx={{mb:10}}>
         <Table aria-label="customized table">
           <TableHead>
             <TableRow>
