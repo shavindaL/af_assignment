@@ -65,7 +65,7 @@ describe("Backend CRUD operations", () => {
         // Test case 2b (failure scenario)
         test("Get a particular political party (failure scenario)", async () => {
             // Invalid value
-            let partyID = 5;
+            let partyID = 8;
 
             // Invoke GET request
             const res = await request(app).get(`/api/v1/political-parties/${partyID}`);
@@ -91,12 +91,12 @@ describe("Backend CRUD operations", () => {
         test("Add new political party (success scenario) ", async () => {
 
             const res = await request(app).post("/api/v1/political-parties").send({
-                "name": "JVP",
-                "phone_no": "0112675444",
-                "email": "unp224@gmail.com",
-                "leader_name": "Silva",
-                "description": "ADSDSDSDSSDSDSDD",
-                "competitor_count": "10"
+                "name": "NYC",
+                "phone_no": "0112908760",
+                "email": "nyc2023@gmail.com",
+                "leader_name": "Peiris",
+                "description": "A new political party with a new vision",
+                "competitor_count": "28"
             });
 
             // Assertion 1 - Expect status code to be 201
@@ -112,12 +112,12 @@ describe("Backend CRUD operations", () => {
 
             // Invoke POST request with an already existing email
             const res = await request(app).post("/api/v1/political-parties").send({
-                "name": "JVP",
-                "phone_no": "0112675445",
-                "email": "unp224@gmail.com",
-                "leader_name": "Silva",
-                "description": "ADSDSDSDSSDSDSDD",
-                "competitor_count": "10"
+                "name": "NYC",
+                "phone_no": "0112908760",
+                "email": "slfp2023@gmail.com",
+                "leader_name": "Peiris",
+                "description": "A new political party with a new vision",
+                "competitor_count": "28"
             });
 
             // Assertion 1 - Expect status code to be 400
@@ -133,11 +133,11 @@ describe("Backend CRUD operations", () => {
 
             // Invoke POST request with an already existing phone number
             const res = await request(app).post("/api/v1/political-parties").send({
-                "name": "JVP",
-                "phone_no": "0112675444",
-                "email": "unp225@gmail.com",
+                "name": "NYC",
+                "phone_no": "0112675430",
+                "email": "nyc2023@gmail.com",
                 "leader_name": "Silva",
-                "description": "ADSDSDSDSSDSDSDD",
+                "description": "A new political party with a new vision",
                 "competitor_count": "10"
             });
 
@@ -155,11 +155,11 @@ describe("Backend CRUD operations", () => {
 
             // Invoke POST request with an already existing email and phone number both
             const res = await request(app).post("/api/v1/political-parties").send({
-                "name": "JVP",
-                "phone_no": "011267544",
-                "email": "unp224@gmail.com",
+                "name": "NYC",
+                "phone_no": "0112675430",
+                "email": "slfp2023@gmail.com",
                 "leader_name": "Silva",
-                "description": "ADSDSDSDSSDSDSDD",
+                "description": "A new political party with a new vision",
                 "competitor_count": "10"
             });
 
@@ -186,14 +186,14 @@ describe("Backend CRUD operations", () => {
         test("Update political party (success scenario) ", async () => {
 
             // Valid value
-            const partyID = 3;
+            const partyID = 4;
 
             // Invoke PUT request with updated details
             const res = await request(app).put(`/api/v1/political-parties/${partyID}`).send({
-                "name": "JVP",
-                "phone_no": "0122675444",
-                "email": "unp274@gmail.com",
-                "leader_name": "Silva",
+                "name": "NPC",
+                "phone_no": "0113675690",
+                "email": "npc2023@gmail.com",
+                "leader_name": "Liyanage",
                 "description": "A good party",
                 "competitor_count": "10",
                 "vote_results": "5"
@@ -212,13 +212,13 @@ describe("Backend CRUD operations", () => {
         test("Update political party (failure scenario) ", async () => {
 
             // Valid value
-            const partyID = 3;
+            const partyID = 4;
 
             // Invoke PUT request with an existing email of another party
             const res = await request(app).put(`/api/v1/political-parties/${partyID}`).send({
                 "name": "ABC",
-                "phone_no": "0112672341",
-                "email": "unp123@gmail.com",
+                "phone_no": "0113764320",
+                "email": "slfp2023@gmail.com",
                 "leader_name": "Perera",
                 "description": "This is a good political party",
                 "competitor_count": "5",
@@ -237,15 +237,15 @@ describe("Backend CRUD operations", () => {
         test("Update political party (failure scenario) ", async () => {
 
             // Valid value
-            const partyID = 3;
+            const partyID = 4;
 
             // Invoke PUT request with an existing phone number of another party
             const res = await request(app).put(`/api/v1/political-parties/${partyID}`).send({
-                "name": "ABC",
-                "phone_no": "0112675410",
-                "email": "unp274@gmail.com",
+                "name": "NPC",
+                "phone_no": "0112675430",
+                "email": "npc@gmail.com",
                 "leader_name": "Perera",
-                "description": "THis is a good political party",
+                "description": "This is a good political party",
                 "competitor_count": "5",
                 "vote_results": "9"
             });
@@ -262,13 +262,13 @@ describe("Backend CRUD operations", () => {
         test("Update political party (failure scenario)", async () => {
 
             // Valid value
-            const partyID = 3;
+            const partyID = 4;
 
             // Invoke PUT request with an existing email and phone number of another party
             const res = await request(app).put(`/api/v1/political-parties/${partyID}`).send({
-                "name": "ABC",
-                "phone_no": "0112675410",
-                "email": "unp123@gmail.com",
+                "name": "NPC",
+                "phone_no": "0112675430",
+                "email": "slfp2023@gmail.com",
                 "leader_name": "Perera",
                 "description": "This is a good political party",
                 "competitor_count": "5",
@@ -296,7 +296,7 @@ describe("Backend CRUD operations", () => {
         // Test case 5a (success scenario)
         test("Update vote results of a particular political party (success scenario)", async () => {
             // Valid value
-            const partyID = 3;
+            const partyID = 4;
 
             // Invoke PATCH request 
             const res = await request(app).patch(`/api/v1/political-parties/${partyID}`).send({
@@ -337,10 +337,11 @@ describe("Backend CRUD operations", () => {
      * Sub Test Suite 6
      */
     describe("DELETE request at /api/v1/political-parties/:id URI", () => {
+        
         // Test case 6a (success scenario)
         test("Delete a particular political party (success scenario)", async () => {
             // Valid value
-            const partyID = 3;
+            const partyID = 4;
 
             // Invoke DELETE request 
             const res = await request(app).delete(`/api/v1/political-parties/${partyID}`);
