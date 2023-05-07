@@ -51,7 +51,7 @@ export default function CusPoliticalPartiesPage() {
   return (
     <>
       <Navbar />
-      <Box sx={{ flexGrow: 1, mx: 10, mt: 10 }}>
+      <Box sx={{ flexGrow: 1, mx: 10, mt: 20 }}>
         <Grid container spacing={3}>
           {rows &&
             rows.map((row) => (

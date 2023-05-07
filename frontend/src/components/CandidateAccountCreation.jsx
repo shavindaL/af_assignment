@@ -7,6 +7,9 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
+
 import { useState } from "react";
 
 import {
@@ -98,8 +101,7 @@ const CandidateAccountCreation = () => {
   const [emailAlert, setEmailAlert] = useState("");
   const [phoneAlert, setPhoneAlert] = useState("");
 
-  const [value, setValue] = useState(dayjs('2022-04-17'));
-
+  const [value, setValue] = useState(dayjs("2022-04-17"));
 
   const onSubmit = async ({
     name,
@@ -116,8 +118,7 @@ const CandidateAccountCreation = () => {
     election,
     number,
   }) => {
-
-    console.log(name,value,gender)
+    console.log(name, value, gender);
     const response = await fetch("http://localhost:5000/api/v1/candidates/", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -143,12 +144,21 @@ const CandidateAccountCreation = () => {
     if (msg === "Sorry, this email is already taken") {
       // redirect
       setEmailAlert(msg);
+      setPhoneAlert("error");
     } else if (msg === "Sorry, this NIC is already taken") {
       setEmailAlert(msg);
+      setPhoneAlert("error");
     } else {
       setEmailAlert(msg);
+      setPhoneAlert("success");
+
+
       // Reload the page
-      window.location.reload();
+      // window.location.reload();
+
+      setTimeout(function(){
+        window.location.reload();
+     }, 2000);
     }
   };
 
@@ -158,8 +168,6 @@ const CandidateAccountCreation = () => {
   <AlertTitle>Error</AlertTitle>
   {emailAlert}<strong>check it out!</strong>
 </Alert>} */}
-
-      {emailAlert && <div class="text-danger mt-1 mb-3">{emailAlert}</div>}
 
       <form onSubmit={handleSubmit(onSubmit)}>
         <div style={{ marginBottom: "15px", width: "700px" }}>
@@ -232,7 +240,7 @@ const CandidateAccountCreation = () => {
               <DatePicker
                 label="Date of Birth"
                 value={value}
-          onChange={(newValue) => setValue(newValue)}
+                onChange={(newValue) => setValue(newValue)}
               />
             </DemoContainer>
           </LocalizationProvider>
@@ -394,6 +402,12 @@ const CandidateAccountCreation = () => {
           </Button>
         </div>
       </form>
+      <center>
+        {emailAlert && (
+          <Alert severity={phoneAlert} sx={{mt:3}}>{emailAlert}</Alert>
+          
+        )}
+      </center>
     </div>
   );
 };
