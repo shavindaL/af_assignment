@@ -9,8 +9,6 @@ import Paper from "@mui/material/Paper";
 import { Avatar, Button, IconButton } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import { useEffect, useState } from "react";
-import ConfirmDialog from "./ConfirmDialog";
-import { Link } from "react-router-dom";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -34,16 +32,18 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-export default function CandidateTable() {
+export default function CusPartyCandidates() {
   // Array to hold candidate data
   const [rows, setRows] = useState([]);
+
+  const ids = window.location.pathname.split("/")[2]
 
   // Use useEffect hook
   useEffect(() => {
     // Method to get data of election candidates
     async function getCandidateData() {
       try {
-        const res = await fetch("http://localhost:5000/api/v1/candidates");
+        const res = await fetch(`http://localhost:5000/api/v1/candidates/party/${ids}`);
         const data = await res.json()
 
         data.sort((a,b)=>(b.votingNumber[0].number)-(a.votingNumber[0].number));
@@ -66,27 +66,16 @@ export default function CandidateTable() {
   return (
     // Start of CandidateTable component
     <>
-      <center>
-        <Button
-          variant="outlined"
-          sx={{ color: "#1565c0" }}
-          href="/election-candidates/candidate"
-          className="relative bottom-[10px]"
-        >
-          ADD
-        </Button>
-      </center>
 
-      <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 700 }} aria-label="customized table">
+      <TableContainer component={Paper} sx={{mb:10}}>
+        <Table aria-label="customized table">
           <TableHead>
             <TableRow>
-              <StyledTableCell align="center">NIC</StyledTableCell>
               <StyledTableCell align="center">Name</StyledTableCell>
-              <StyledTableCell align="center">Party</StyledTableCell>
+              <StyledTableCell align="center">Gender</StyledTableCell>
+              <StyledTableCell align="center">Province</StyledTableCell>
               <StyledTableCell align="center">Voting Number</StyledTableCell>
               <StyledTableCell align="center">Votes</StyledTableCell>
-              <StyledTableCell align="center"></StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -109,30 +98,19 @@ export default function CandidateTable() {
                         }}
                       />
                     </Avatar> */}
-                    {row.nic}
+                    {row.name}
                   </StyledTableCell>
-                  <StyledTableCell align="center">{row.name}</StyledTableCell>
+                  <StyledTableCell align="center">{row.gender}</StyledTableCell>
 
                   <StyledTableCell align="center">
-                    {row.politicalPartyId}
+                    {row.province}
                   </StyledTableCell>
-
+                   
                   <StyledTableCell align="center">
                     {row.votingNumber[0].number}
                   </StyledTableCell>
-                  <StyledTableCell align="center">{10}</StyledTableCell>
-                  <StyledTableCell align="center">
-                    <Link to={{ pathname: `../election-candidates/update/${row.nic}` }}>
-                      <IconButton
-                        size="medium"
-                        sx={{ padding: "4px 4px 4px 4px" }}
-                      >
-                        <EditIcon fontSize="inherit" sx={{ color: "#42a5f5" }} />
-                      </IconButton>
-                    </Link>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    {/* <ConfirmDialog partyID={row.partyID} /> */}
-                  </StyledTableCell>
+
+                  <StyledTableCell align="center">{10}</StyledTableCell> 
                 </StyledTableRow>
               ))}
           </TableBody>

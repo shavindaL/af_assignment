@@ -73,7 +73,7 @@ const getAllPoliticalParties = async (req, res) => {
             res.status(200).send(politicalParties);
 
             // Insert an audit log document
-            new PoliticalPartyAuditTrail({
+            await new PoliticalPartyAuditTrail({
                 userIPAddress: req.socket.remoteAddress,
                 operation: "read",
                 documentID: "",
@@ -87,7 +87,7 @@ const getAllPoliticalParties = async (req, res) => {
             res.status(400).send("Failed to get political parties");
 
             // Insert an audit log document
-            new PoliticalPartyAuditTrail({
+            await new PoliticalPartyAuditTrail({
                 userIPAddress: req.socket.remoteAddress,
                 operation: "read",
                 documentID: "",
@@ -130,7 +130,7 @@ const getPoliticalParty = async (req, res) => {
             res.status(200).send(politicalParty);
 
             // Insert audit log document
-            new PoliticalPartyAuditTrail({
+            await new PoliticalPartyAuditTrail({
                 userIPAddress: req.socket.remoteAddress,
                 operation: "read",
                 documentID: politicalParty._id,
@@ -144,7 +144,7 @@ const getPoliticalParty = async (req, res) => {
             res.status(400).send("Failed to find the political party");
 
             // Insert audit log document
-            new PoliticalPartyAuditTrail({
+            await new PoliticalPartyAuditTrail({
                 userIPAddress: req.socket.remoteAddress,
                 operation: "read",
                 documentID: "",
@@ -187,7 +187,7 @@ const addPoliticalParty = async (req, res) => {
                 res.status(400).send("Sorry, this email is already taken");
 
                 // Insert audit log document
-                new PoliticalPartyAuditTrail({
+                await new PoliticalPartyAuditTrail({
                     userIPAddress: req.socket.remoteAddress,
                     operation: "create",
                     documentID: "",
@@ -208,7 +208,7 @@ const addPoliticalParty = async (req, res) => {
                 res.status(400).send("Sorry, this phone number is already taken");
 
                 // Insert audit log document
-                new PoliticalPartyAuditTrail({
+                await new PoliticalPartyAuditTrail({
                     userIPAddress: req.socket.remoteAddress,
                     operation: "create",
                     documentID: "",
@@ -273,7 +273,7 @@ const addPoliticalParty = async (req, res) => {
                 newPoltParty.vote_results = vote_results;
 
                 // Insert audit log document
-                new PoliticalPartyAuditTrail({
+                await new PoliticalPartyAuditTrail({
                     userIPAddress: req.socket.remoteAddress,
                     operation: "create",
                     documentID: newPoltParty._id,
@@ -287,7 +287,7 @@ const addPoliticalParty = async (req, res) => {
                 res.status(400).send("Failed to add the political party");
 
                 // Insert audit log document
-                new PoliticalPartyAuditTrail({
+                await new PoliticalPartyAuditTrail({
                     userIPAddress: req.socket.remoteAddress,
                     operation: "create",
                     documentID: "",
@@ -363,7 +363,7 @@ const updatePoliticalParty = async (req, res) => {
 
 
                     // Insert audit log document
-                    new PoliticalPartyAuditTrail({
+                    await new PoliticalPartyAuditTrail({
                         userIPAddress: req.socket.remoteAddress,
                         operation: "update",
                         documentID: tempPoltParty._id,
@@ -417,7 +417,7 @@ const updatePoliticalParty = async (req, res) => {
                     tempPoltParty.vote_results = vote_results;
 
                     // Insert audit log document
-                    new PoliticalPartyAuditTrail({
+                    await new PoliticalPartyAuditTrail({
                         userIPAddress: req.socket.remoteAddress,
                         operation: "update",
                         documentID: tempPoltParty._id,
@@ -465,10 +465,10 @@ const updatePoliticalParty = async (req, res) => {
                 res.status(200).send("Political party updated successfully");
 
                 // Get previous details of the document that is being updated
-                tempPoltParty = await Seller.findOne({ partyID: req.params.id });
+                tempPoltParty = await PoliticalParty.findOne({ partyID: req.params.id });
 
                 // Insert audit log document
-                new PoliticalPartyAuditTrail({
+                await new PoliticalPartyAuditTrail({
                     userIPAddress: req.socket.remoteAddress,
                     operation: "update",
                     documentID: updatedPoltParty._id,
@@ -482,10 +482,10 @@ const updatePoliticalParty = async (req, res) => {
                 res.status(400).send("Failed to update political party");
 
                 // Get previous details of the document that is being updated
-                tempPoltParty = await Seller.findOne({ partyID: req.params.id });
+                tempPoltParty = await PoliticalParty.findOne({ partyID: req.params.id });
 
                 // Insert audit log document
-                new PoliticalPartyAuditTrail({
+                await new PoliticalPartyAuditTrail({
                     userIPAddress: req.socket.remoteAddress,
                     operation: "update",
                     documentID: tempPoltParty._id,
@@ -535,7 +535,7 @@ const updateVoteResults = async (req, res) => {
             updatedPoltParty.vote_results = cryptr.decrypt(updatedPoltParty.vote_results);
 
             // Insert audit log document
-            new PoliticalPartyAuditTrail({
+            await new PoliticalPartyAuditTrail({
                 userIPAddress: req.socket.remoteAddress,
                 operation: "update",
                 documentID: updatedPoltParty._id,
@@ -556,7 +556,7 @@ const updateVoteResults = async (req, res) => {
             tempPoltParty.vote_results = cryptr.decrypt(tempPoltParty.vote_results);
 
             // Insert audit log document
-            new PoliticalPartyAuditTrail({
+            await new PoliticalPartyAuditTrail({
                 userIPAddress: req.socket.remoteAddress,
                 operation: "update",
                 documentID: tempPoltParty._id,
@@ -607,7 +607,7 @@ const deletePoliticalParty = async (req, res) => {
             deletedPoltParty.vote_results = vote_results;
 
             // Insert audit log document
-            new PoliticalPartyAuditTrail({
+            await new PoliticalPartyAuditTrail({
                 userIPAddress: req.socket.remoteAddress,
                 operation: "delete",
                 documentID: deletedPoltParty._id,
@@ -637,7 +637,7 @@ const deletePoliticalParty = async (req, res) => {
             tempPoltParty.vote_results = vote_results;
 
             // Insert audit log document
-            new PoliticalPartyAuditTrail({
+            await new PoliticalPartyAuditTrail({
                 userIPAddress: req.socket.remoteAddress,
                 operation: "delete",
                 documentID: tempPoltParty._id,
@@ -742,7 +742,7 @@ const updatePhoto = async (req, res) => {
                 res.status(200).send("Successfully uploaded the image for political party");
 
                 // Insert an audit log document
-                new PoliticalPartyAuditTrail({
+                await new PoliticalPartyAuditTrail({
                     userIPAddress: req.socket.remoteAddress,
                     operation: "update",
                     documentID: updatedPoltParty._id,
@@ -760,7 +760,7 @@ const updatePhoto = async (req, res) => {
                 res.status(400).send("Failed to upload the image for political party");
 
                 // Insert an audit log document
-                new SellerAuditTrail({
+                await new PoliticalPartyAuditTrail({
                     userIPAddress: req.socket.remoteAddress,
                     operation: "update",
                     documentID: tempPoltParty._id,
@@ -779,7 +779,7 @@ const updatePhoto = async (req, res) => {
             res.status(400).send("Failed to upload the image to cloud");
 
             // Insert an audit log document
-            new SellerAuditTrail({
+            await new PoliticalPartyAuditTrail({
                 userIPAddress: req.socket.remoteAddress,
                 operation: "update",
                 documentID: tempPoltParty._id,

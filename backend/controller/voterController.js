@@ -1,7 +1,7 @@
 const Voter = require('../models/voter')
 
 const getAllVoters = (req, res) => {
-    res.status(200).json({success:"success"})
+    res.status(200).json({ success: "success" })
 }
 
 
@@ -18,9 +18,10 @@ const getVoters = async (req, res) => {
 
         } else {
             // Respond with status code 400 (Bad Request) if unsuccessful
-            res.status(400).send("Failed to get voters"); 
+            res.status(400).send("Failed to get voters");
 
-    } } catch (err) {
+        }
+    } catch (err) {
         // Print error message
         console.log(err.message);
     }
@@ -38,7 +39,7 @@ const addVoter = async (req, res) => {
         age: req.body.age,
         dob: req.body.dob,
         voterAddress: req.body.voterAddress
-        
+
     });
 
     try {
@@ -64,12 +65,16 @@ const addVoter = async (req, res) => {
 const getVoter = async (req, res) => {
 
     try {
-
         // Find the particular document
         const voter = await Voter.findOne({ voterNIC: req.params.id });
-
+        
         // Respond with status code 200 (OK) if successful
-        res.status(200).send(voter);
+        if (voter) {
+            res.status(200).json(voter);
+        }
+        else {
+            res.status(404).json("Failed to find voter");
+        }
 
     } catch (err) {
 
@@ -84,7 +89,7 @@ const getVoter = async (req, res) => {
 
 
 // Method to update details of a particular voter
-const updateVoter= async (req, res) => {
+const updateVoter = async (req, res) => {
 
     try {
 
@@ -103,7 +108,7 @@ const updateVoter= async (req, res) => {
                     age: req.body.age,
                     dob: req.body.dob,
                     voterAddress: req.body.voterAddress
-                    
+
                 }
             }
         );

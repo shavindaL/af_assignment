@@ -17,6 +17,14 @@ const electionCandidateSchema = new Schema(
       required: true,
       unique: true,
     },
+    gender:{
+      type: String,
+      required: true,
+    },
+    dob:{
+      type: String,
+      // required: true,
+    },
     email: {
       type: String,
       unique: true,
@@ -48,7 +56,7 @@ const electionCandidateSchema = new Schema(
                 
             },
             number: {
-                type: Number,
+                type: String,
             }
         }
     ],
@@ -59,7 +67,7 @@ const electionCandidateSchema = new Schema(
                 type: String, 
             },
             count: {
-                type: String,
+                type: Number,
             }
         }
     ],

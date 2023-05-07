@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 function CandidateLogin() {
+  
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -12,10 +13,35 @@ function CandidateLogin() {
     setPassword(event.target.value);
   };
 
-  const handleLogin = (event) => {
+  const handleLogin = async (event) => {
     event.preventDefault();
-    console.log(`Email: ${email}, Password: ${password}`);
-    // TODO: implement actual login logic here
+  
+    // Fetch all candidates
+    try {
+      const res = await fetch("http://localhost:5000/api/v1/candidates");
+      const candidates = await res.json();
+  
+      // Check if email and password match for any candidate
+      let matchFound = false;
+      let candidateID = '';
+      candidates.forEach(candidate => {
+        if (candidate.email === email && candidate.password === password) {
+          matchFound = true;
+          candidateID = candidate._id;
+        }
+      });
+  
+      if (matchFound) {
+        console.log("Login successful");
+        window.location.replace(`/CandidateProfile/${candidateID}`)
+        
+        // Redirect to dashboard or home page
+      } else {
+        alert("Invalid email or password");
+      }
+    } catch (err) {
+      console.log(err.message);
+    }
   };
 
   return (
@@ -76,4 +102,3 @@ function CandidateLogin() {
 }
 
 export default CandidateLogin;
-             

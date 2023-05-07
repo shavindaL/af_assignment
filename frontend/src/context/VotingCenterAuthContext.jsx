@@ -1,15 +1,13 @@
-import { createContext, useReducer } from "react";
+import { createContext, useEffect, useReducer } from "react";
 
 export const VotingCenterAuthContext = createContext();
 
 export const authReducer = (state, action) => {
     switch (action.type) {
-        case 'LOGIN': {
-            return { user: action.paylod }
-        }
-        case 'LOGOUT': {
-            return { user: null }
-        }
+        case 'LOGIN':
+            return { location: action.payload }
+        case 'LOGOUT':
+            return { location: null }
         default:
             return state
     }
@@ -17,8 +15,16 @@ export const authReducer = (state, action) => {
 
 export const VotingCenterAuthContextProvider = ({ children }) => {
     const [state, dispatch] = useReducer(authReducer, {
-        user: null
+        location: null
     })
+
+    useEffect(() => {
+        const location = JSON.parse(localStorage.getItem('votingCenter'))
+
+        if (location) {
+            dispatch({ type: 'LOGIN', payload: location })
+        }
+    }, [])
 
     console.log("AuthContext state: ", state)
 

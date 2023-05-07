@@ -23,7 +23,7 @@ const getAllVotingCenters = async (req, res) => {
         .sort("votingCenterId")
         .then(votingCenters => {
             if (votingCenters.length !== 0)
-                res.status(200).json({ votingCenters });
+                res.status(200).json(votingCenters);
             else
                 res.status(200).json({ error: "Voting Centers not found" });
         })
@@ -79,14 +79,14 @@ const signup = async (req, res) => {
         }
 
         //* Get last voting center Id Id
-        const lastVotingCenter = await VotingCenter.find().sort({ productId: -1 });
+        const lastVotingCenter = await VotingCenter.find().sort({ votingCenterId: -1 });
 
         let newVotingCenterId;
         if (lastVotingCenter == "") {
             newVotingCenterId = 1
         }
         else {
-            newVotingCenterId = (lastVotingCenter[0].votingCenterId + 1)
+            newVotingCenterId = (Number(lastVotingCenter[0].votingCenterId) + 1)
         }
 
         const salt = await bcrypt.genSalt(10);
