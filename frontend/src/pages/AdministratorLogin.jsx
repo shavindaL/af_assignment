@@ -13,10 +13,33 @@ function AdministratorLogin() {
     setPassword(event.target.value);
   };
 
-  const handleLogin = (event) => {
+  const handleLogin = async (event) => {
     event.preventDefault();
-    console.log(`Email: ${email}, Password: ${password}`);
-    // TODO: implement actual login logic here
+  
+    // Fetch all admins
+    try {
+      const res = await fetch("http://localhost:5000/admins");
+      const admins = await res.json();
+  
+      // Check if email and password match for any admin
+      let matchFound = false;
+    //   let adminID = '';
+      admins.forEach(admin => {
+        if (admin.email === email && admin.password === password) {
+          matchFound = true;
+        //   adminID = admin._id;
+        }
+      });
+  
+      if (matchFound) {
+        console.log("Login successful");
+        
+      } else {
+        alert("Invalid email or password");
+      }
+    } catch (err) {
+      console.log(err.message);
+    }
   };
 
   return (
@@ -77,4 +100,5 @@ function AdministratorLogin() {
 }
 
 export default AdministratorLogin;
+
              

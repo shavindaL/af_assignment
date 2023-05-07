@@ -102,4 +102,3 @@ function CandidateLogin() {
 }
 
 export default CandidateLogin;
-             
