@@ -10,7 +10,7 @@ const request = require("supertest");
 const app = require("../server");
 
 
-// Test suite for CRUD operations  (Backend)
+// Main Test suite for CRUD operations  (Backend)
 describe("Backend CRUD operations", () => {
 
     // Terminate DB connection after performing all tests
@@ -19,9 +19,10 @@ describe("Backend CRUD operations", () => {
     })
 
     /**
-     * Test case 1
+     * Sub Test Suite 1
      */
     describe("GET request at /api/v1/political-parties URI", () => {
+        
         // Test case 1a
         test("Get all political parties", async () => {
 
@@ -31,13 +32,13 @@ describe("Backend CRUD operations", () => {
             expect(res.statusCode).toEqual(200);
 
             // Assertion 2 - Expect the response body to be an array
-            expect(res.body).toEqual(expect.arrayContaining(res.body));
+            expect(res.body).toBeInstanceOf(Array);
         });
     });
 
 
     /**
-     * Test case 2
+     * Sub Test Suite 2
      */
     describe("GET request at /api/v1/political-parties/:id URI", () => {
 
@@ -82,7 +83,7 @@ describe("Backend CRUD operations", () => {
 
 
     /**
-    * Test Case 3
+    * Sub Test Suite 3
     */
     describe("POST request at /api/v1/political-parties URI", () => {
 
@@ -178,7 +179,7 @@ describe("Backend CRUD operations", () => {
 
 
     /**
-     * Test Case 4
+     * Sub Test Suite 4
      */
     describe("PUT request at /api/v1/political-parties/:id URI", () => {
         // Test case 4a (success scenario) 
@@ -288,7 +289,7 @@ describe("Backend CRUD operations", () => {
 
 
     /**
-     * Test case 5
+     * Sub Test Suite 5
      */
     describe("PATCH request at /api/v1/political-parties/:id URI", () => {
 
@@ -333,7 +334,7 @@ describe("Backend CRUD operations", () => {
 
 
     /**
-     * Test case 6
+     * Sub Test Suite 6
      */
     describe("DELETE request at /api/v1/political-parties/:id URI", () => {
         // Test case 6a (success scenario)
