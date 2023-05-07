@@ -176,7 +176,7 @@ const updateCandidate = async (req, res) => {
   });
 
   Candidate
-    .findOneAndUpdate({ nic: req.params.id }, updateCandidate)
+    .findOneAndUpdate({ _id: req.params.id }, updateCandidate)
     .then(candidate => res.status(200).json(candidate))
     .catch(err => res.status(400).json(err.message))
 

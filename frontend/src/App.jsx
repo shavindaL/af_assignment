@@ -20,7 +20,7 @@ import CusPoliticalParty from "./pages/CusPoliticalParty";
 import AddCandidate from "./pages/AddCandidate";
 import ValidateVoter from "./pages/ValidateVoter";
 import UpdateCandidates from "./pages/UpdateCandidates";
-import VotingPage from "./pages/VoitingPage";
+import VotingPage from "./pages/VotingPage";
 
 function App() {
   return (

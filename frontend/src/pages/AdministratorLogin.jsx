@@ -27,13 +27,11 @@ function AdministratorLogin() {
       admins.forEach(admin => {
         if (admin.email === email && admin.password === password) {
           matchFound = true;
-        //   adminID = admin._id;
         }
       });
   
       if (matchFound) {
-        console.log("Login successful");
-        
+        window.location.replace("../admin-dashboard")        
       } else {
         alert("Invalid email or password");
       }

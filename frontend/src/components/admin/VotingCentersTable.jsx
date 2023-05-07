@@ -119,17 +119,7 @@ export default function VotingCenterTable() {
                   </StyledTableCell>
                   <StyledTableCell align="center">
                     {voterCenter.votingCenterContactNo}
-                  </StyledTableCell>
-                  <StyledTableCell align="center">
-                    <IconButton
-                      size="medium"
-                      sx={{ padding: "4px 4px 4px 4px" }}
-                    >
-                      <EditIcon fontSize="inherit" sx={{ color: "#42a5f5" }} />
-                    </IconButton>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    {/* <ConfirmDialog partyID={voterCenter.partyID} /> */}
-                  </StyledTableCell>
+                  </StyledTableCell>                 
                 </StyledTableRow>
               )}
           </TableBody>

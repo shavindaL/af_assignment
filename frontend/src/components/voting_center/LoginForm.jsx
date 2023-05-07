@@ -160,8 +160,8 @@ export default function LoginForm() {
                                 type="button"
                                 variant="contained"
                                 sx={{
-                                    width: 500,
-                                    height: 120,
+                                    width: 300,
+                                    height: 80,
                                     fontSize: 36,
                                     fontWeight: 700,
                                     borderRadius: 5,
@@ -172,11 +172,11 @@ export default function LoginForm() {
                     <Grid item xs={6} sm={6} md={6} lg={6}>
                         {page === 0 ?
                             <Button
-                                variant="contained"
+                                variant="outlined"
                                 type="button"
-                                sx={{
-                                    width: 500,
-                                    height: 120,
+                                sx={{           
+                                    width: 300,
+                                    height: 80,
                                     fontSize: 36,
                                     fontWeight: 700,
                                     borderRadius: 5,
@@ -190,8 +190,8 @@ export default function LoginForm() {
                                 variant="contained"
                                 type="submit"
                                 sx={{
-                                    width: 500,
-                                    height: 120,
+                                    width: 300,
+                                    height: 80,
                                     fontSize: 36,
                                     fontWeight: 700,
                                     borderRadius: 5,

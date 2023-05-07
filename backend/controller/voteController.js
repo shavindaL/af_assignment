@@ -9,42 +9,46 @@ const Cryptr = require("cryptr");
     @route POST /api/v1/vote
     @access 
 */
+// Instantiate Cryptr object
+const cryptr = new Cryptr(process.env.SECRET_KEY);
+
 const processVote = async (req, res) => {
 
     const { votes, location } = req.body;
 
-    votes.forEach(async vote => {
+    for (let vote in votes) {
+
+        console.log("D : ", vote);
 
         //* Increment Candidate vote count
         await Candidate
             .findOneAndUpdate(
-                { _id: vote._id },
+                { _id: votes[vote]._id },
                 { $inc: { voteCount: 1 } }
             )
             .then()
             .catch(err => {
-                res.status(400).json({ error: err.message })
+                console.log(err);
             });
 
 
-
-
-
         try {
-            // Instantiate Cryptr object
-            const cryptr = new Cryptr(process.env.SECRET_KEY);
+
 
             // Get previous vote results of the given political party
-            const tempPoltParty = await PoliticalParty.findOne({ partyID: vote.politicalPartyId });
-            const voteResult = Number(cryptr.decrypt(tempPoltParty.vote_results))
+            const tempPoltParty = await PoliticalParty.findOne({ partyID: votes[vote].politicalPartyId });
+            const voteResult = Number(cryptr.decrypt(tempPoltParty.vote_results));
+
+            console.log("A : ", votes[vote].politicalPartyId);
+            console.log("A : ", voteResult);
 
             const updatedPoltParty = await PoliticalParty.findOneAndUpdate(
                 {
-                    partyID: vote.politicalPartyId
+                    partyID: votes[vote].politicalPartyId
                 },
                 {
                     $set: {
-                        vote_results: cryptr.encrypt(voteResult + 1)
+                        vote_results: cryptr.encrypt((voteResult + 1).toString())
                     },
                 },
                 {
@@ -73,8 +77,6 @@ const processVote = async (req, res) => {
                 }).save();
 
             } else {
-                // Respond with status code 400 (Bad Request) if unsuccessful
-                res.status(400).send("Failed to update voting results");
 
                 // Decrypt already encrypted data
                 tempPoltParty.vote_results = cryptr.decrypt(tempPoltParty.vote_results);
@@ -100,7 +102,7 @@ const processVote = async (req, res) => {
             console.log(err.message);
         }
 
-    });
+    };
 
 
 
