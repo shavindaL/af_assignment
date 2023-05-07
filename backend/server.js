@@ -12,12 +12,18 @@ const voterRoutes = require('./routes/voterRoutes');
 // Import the votingCenterRoutes module
 const votingCenterRoutes = require('./routes/votingCenterRoutes');
 
+const voteRoutes = require('./routes/voteRoutes');
+
+
 
 // Import politicalPartyRoutes module
 const politicalPartyRoutes = require('./routes/politicalPartyRoutes');
 
 // Import candidateRoutes module
 const candidateRoutes = require('./routes/candidateRoutes');
+
+// Import adminRoutes module
+const adminRoutes = require('./routes/adminRoutes');
 
 // Import multer module
 const multer = require('multer');
@@ -47,12 +53,16 @@ app.use(cors({
 
 app.use("/api/v1/voters", voterRoutes);
 app.use("/api/v1/voting-centers", votingCenterRoutes);
+app.use("/api/v1/vote", voteRoutes);
 
 // Use politicalPartyRoutes module
 app.use("/api/v1/political-parties", politicalPartyRoutes);
 
 // Use candidateRoutes module
 app.use("/api/v1/candidates", candidateRoutes);
+
+// Use adminRoutes module
+app.use("/", adminRoutes);
 
 //* Connect to db
 mongoose
@@ -69,3 +79,6 @@ mongoose
     .catch(error => {
         console.log(error);
     });
+
+// Export app
+module.exports = app;

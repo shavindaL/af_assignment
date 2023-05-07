@@ -15,61 +15,60 @@ export default function AdminSidebar() {
     // Start of AdminSidebar component
     <>
       {/* <div id="app" className="flex h-auto"> */}
-        <Sidebar className="h-auto" style={{ fontFamily: "Roboto" }} rootStyles={{backgroundColor: "#0d47a1"}}>
-          <Menu className="bg-[#0d47a1] h-[100vh]">
-            <MenuItem
-              icon={<Avatar>A</Avatar>}
-              onClick={() => {
-                collapseSidebar();
-              }}
-              style={{ textAlign: "center" }}
-              className="tracking-[1px] text-white hover:text-black h-auto"
-            >
-              ADMINISTRATOR
-            </MenuItem>
-
-
-            <Divider className="bg-white" />
-
-            <MenuItem
-              icon={<DashboardIcon />}
-              className="tracking-[1px] text-white hover:text-black"
-            >
-              <Link to="/admin-dashboard">DASHBOARD</Link>
-            </MenuItem>
-            <MenuItem
-              icon={<PollIcon />}
-              className="tracking-[1px] text-white hover:text-black"
-            >
-              <Link to="/political-parties">POLITICAL PARTIES</Link>
-            </MenuItem>
-            <MenuItem
-              icon={<HowToRegIcon />}
-              className="tracking-[1px] text-white hover:text-black"
-            >
-              CANDIDATES
-            </MenuItem>
-            <MenuItem
-              icon={<PeopleAltIcon />}
-              className="tracking-[1px] text-white hover:text-black"
-            >
-              VOTERS
-            </MenuItem>
+      <Sidebar className="h-auto" style={{ fontFamily: "Roboto", position: "fixed" }} rootStyles={{ backgroundColor: "#0d47a1" }}>
+        <Menu className="bg-[#0d47a1] h-[100vh]">
+          <MenuItem
+            icon={<Avatar>A</Avatar>}
+            onClick={() => {
+              collapseSidebar();
+            }}
+            style={{ textAlign: "center" }}
+            className="tracking-[1px] text-white hover:text-black h-auto"
+          >
+            ADMINISTRATOR
+          </MenuItem>
+          <Divider className="bg-white" />
+          <MenuItem
+            icon={<DashboardIcon />}
+            className="tracking-[1px] text-white hover:text-black"
+          >
+            <Link to="/admin-dashboard">DASHBOARD</Link>
+          </MenuItem>
+          <MenuItem
+            icon={<PollIcon />}
+            className="tracking-[1px] text-white hover:text-black"
+          >
+            <Link to="/political-parties">POLITICAL PARTIES</Link>
+          </MenuItem>
+          <MenuItem
+            icon={<HowToRegIcon />}
+            className="tracking-[1px] text-white hover:text-black"
+          >
+            <Link to="/election-candidates">CANDIDATES</Link>
+          </MenuItem>
+          <MenuItem
+            icon={<PeopleAltIcon />}
+            className="tracking-[1px] text-white hover:text-black"
+          >
+            <Link to="/voters">VOTERS</Link>
+          </MenuItem>
+          <Link to={{ pathname: "../voting-centers" }}>
             <MenuItem
               icon={<HowToVoteIcon />}
               className="tracking-[1px] text-white hover:text-black"
             >
               VOTING CENTERS
             </MenuItem>
-            <Divider className="bg-white" />
-            <MenuItem
-              icon={<LogoutIcon />}
-              className="tracking-[1px] text-white hover:text-black"
-            >
-              LOGOUT
-            </MenuItem>
-          </Menu>
-        </Sidebar>
+          </Link>
+          <Divider className="bg-white" />
+          <MenuItem
+            icon={<LogoutIcon />}
+            className="tracking-[1px] text-white hover:text-black"
+          >
+            LOGOUT
+          </MenuItem>
+        </Menu>
+      </Sidebar>
       {/* </div> */}
     </>
     // End of AdminSidebar component

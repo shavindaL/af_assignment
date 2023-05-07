@@ -14,15 +14,15 @@ const votingCenterSchema = new Schema({
         unique: true,
         lowercase: true
     },
-    voterCenterOfficialId: {
+    votingCenterOfficialId: {
         type: String,
         required: true,
     },
-    voterCenterOfficialName: {
+    votingCenterOfficialName: {
         type: String,
         required: true,
     },
-    voterCenterContactNo: {
+    votingCenterContactNo: {
         type: Number,
         required: true,
     },
@@ -30,7 +30,7 @@ const votingCenterSchema = new Schema({
         type: String,
         required: true,
     },
-    voterCount: {
+    votingCount: {
         type: Number,
         required: true,
         default: 0
@@ -40,6 +40,6 @@ const votingCenterSchema = new Schema({
         timestamps: true
     });
 
-const VoterCenter = mongoose.model("VotingCenter", votingCenterSchema);
+const votingCenter = mongoose.model("VotingCenter", votingCenterSchema);
 
-module.exports = VoterCenter;
+module.exports = votingCenter;
