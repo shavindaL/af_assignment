@@ -39,9 +39,6 @@ const processVote = async (req, res) => {
             const tempPoltParty = await PoliticalParty.findOne({ partyID: votes[vote].politicalPartyId });
             const voteResult = Number(cryptr.decrypt(tempPoltParty.vote_results));
 
-            console.log("A : ", votes[vote].politicalPartyId);
-            console.log("A : ", voteResult);
-
             const updatedPoltParty = await PoliticalParty.findOneAndUpdate(
                 {
                     partyID: votes[vote].politicalPartyId

@@ -47,7 +47,7 @@ const getAVotingCenter = async (req, res) => {
             if (votingCenters !== null)
                 res.status(200).json({ votingCenters });
             else
-                res.status(200).json({ error: "No such voting center" });
+                res.status(404).json({ error: "No such voting center" });
         })
         .catch(err => {
             res.status(400).json({ error: err.message })
