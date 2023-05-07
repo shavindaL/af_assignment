@@ -74,8 +74,8 @@ export default function CusPoliticalPartiesPage() {
                   </div>
 
                   <h1>{row.name}</h1>
-                  <p>Leader Name {row.leader_name}</p>
-                  <p>competitor_count {row.competitor_count}</p>
+                  <p>Leader Name : {row.leader_name}</p>
+                  <p>Competitor Count : {row.competitor_count}</p>
                   <a href={'/political_parties/' + row.partyID}>
                   <Button
                     variant="contained"

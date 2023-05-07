@@ -71,13 +71,14 @@ export default function AdminDashboard() {
         const data = await res.json();
 
         if (data) {
-          setVotingCenterCount(data.votingCenters.length);
+          setVotingCenterCount(data.length);
         }
       } catch (err) {
         // Print error message
         console.log(err.message);
       }
     }
+
 
 
     // Invoke the above methods

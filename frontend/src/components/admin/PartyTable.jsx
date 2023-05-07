@@ -71,7 +71,7 @@ export default function PartyTable() {
       </center>
 
       <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 700 }} aria-label="customized table">
+        <Table sx={{ minWidth: 600 }} aria-label="customized table">
           <TableHead>
             <TableRow>
               <StyledTableCell align="center">Logo</StyledTableCell>

@@ -37,11 +37,11 @@ export default function Navbar() {
   };
 
   return (
-    <AppBar style={{ backgroundColor: "white",  position:"fixed"}}>
+    <AppBar style={{ backgroundColor: "white", position: "fixed" }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
-          <img src="logo.png" style={{ height: "50px" }}></img>
+          <img src="../logo.png" style={{ height: "50px" }}></img>
 
           <Box
             sx={{
@@ -50,16 +50,18 @@ export default function Navbar() {
               marginLeft: "100px",
             }}
           >
-            <MenuItem
-              sx={{
-                my: 2,
-                display: "block",
-                color: "blue",
-                fontFamily: "roboto",
-              }}
-            >
-              <Link to="/">Home</Link>
-            </MenuItem>
+            <Link to="/">
+              <MenuItem
+                sx={{
+                  my: 2,
+                  display: "block",
+                  color: "blue",
+                  fontFamily: "roboto",
+                }}
+              >
+                Home
+              </MenuItem>
+            </Link>
 
             <MenuItem
               sx={{
@@ -71,52 +73,50 @@ export default function Navbar() {
             >
               <Link to="#">Results</Link>
             </MenuItem>
-
-            <MenuItem
-              sx={{
-                my: 2,
-                display: "block",
-                color: "blue",
-                fontFamily: "roboto",
-              }}
-            >
-              <Link to="/political_parties">Parties</Link>
-            </MenuItem>
+            <Link to="/political_parties">
+              <MenuItem
+                sx={{
+                  my: 2,
+                  display: "block",
+                  color: "blue",
+                  fontFamily: "roboto",
+                }}
+              >
+                Parties
+              </MenuItem>
+            </Link>
           </Box>
 
-          <Box sx={{ flexGrow: 0 , mr:4}}>
-          <Tooltip title="Select your language" sx={{disableHoverListener:false}}>
-              <Button size="small" onClick={handleOpenUserMenu} sx={{ px: 2, hover:false}}>
+          <Box sx={{ flexGrow: 0, mr: 4 }}>
+            <Tooltip title="Select your language" sx={{ disableHoverListener: false }}>
+              <Button size="small" onClick={handleOpenUserMenu} sx={{ px: 2, hover: false }}>
                 English
               </Button>
             </Tooltip>
             <Tooltip title="ඔබේ භාෂාව තෝරන්න">
               <Button size="small" onClick={handleOpenUserMenu} sx={{ px: 2 }}>
-              සිංහල
+                සිංහල
               </Button>
             </Tooltip>
 
             <Tooltip title="உங்கள் மொழியைத் தேர்ந்தெடுக்கவும்">
               <Button size="small" onClick={handleOpenUserMenu} sx={{ px: 2 }}>
-              தமிழ்
+                தமிழ்
               </Button>
             </Tooltip>
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
-          <Tooltip title="Candidate Login">
-              <Button variant="outlined" onClick={handleOpenUserMenu} sx={{ px: 2 , mr:2}}>
-                Login
-              </Button>
-            </Tooltip>
-            <Tooltip title="Candidate Signup">
-              <Button variant="contained" onClick={handleOpenUserMenu} sx={{ px: 2 }}>
-                Sign Up
-              </Button>
+            <Tooltip title="Candidate Login">
+              <Link to={{ pathname: "../CandidateLogin" }}>
+                <Button variant="outlined" onClick={handleOpenUserMenu} sx={{ px: 2, mr: 2 }}>
+                  Login
+                </Button>
+              </Link>
             </Tooltip>
           </Box>
 
-          
+
           {/* use below part after login */}
 
           {/* <Box sx={{ flexGrow: 0 }}>

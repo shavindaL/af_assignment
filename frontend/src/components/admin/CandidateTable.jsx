@@ -120,9 +120,9 @@ export default function CandidateTable() {
                   <StyledTableCell align="center">
                     {row.votingNumber[0].number}
                   </StyledTableCell>
-                  <StyledTableCell align="center">{10}</StyledTableCell>
+                  <StyledTableCell align="center">{row.voteCount}</StyledTableCell>
                   <StyledTableCell align="center">
-                    <Link to={{ pathname: `../election-candidates/update/${row.nic}` }}>
+                    <Link to={{ pathname: `../election-candidates/update/${row._id}` }}>
                       <IconButton
                         size="medium"
                         sx={{ padding: "4px 4px 4px 4px" }}

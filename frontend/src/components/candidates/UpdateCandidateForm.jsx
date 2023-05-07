@@ -157,20 +157,11 @@ const UpdateCandidateForm = () => {
     const json = await res.json();
 
     if (res.ok) {
-      setTitle(json.name)
-        setName(json.name)
-        setPhoneNo(json.phoneNo)
-        setNic(json.nic)
-        setPrevGender(json.gender)
-        setPosition(json.position)
-        setEmail(json.email)
-        setBiography(json.biography)
-        setPoliticalPartyId(json.politicalPartyId)
-        setPrevProvince(json.province)
-        setIsLoading(false)
+      setIsLoading(false)
+      window.location.reload()
     }
 
-    if(!res.ok){
+    if (!res.ok) {
       console.log(res)
     }
   }

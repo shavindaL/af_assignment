@@ -28,30 +28,38 @@ export default function AdminSidebar() {
             ADMINISTRATOR
           </MenuItem>
           <Divider className="bg-white" />
-          <MenuItem
-            icon={<DashboardIcon />}
-            className="tracking-[1px] text-white hover:text-black"
-          >
-            <Link to="/admin-dashboard">DASHBOARD</Link>
-          </MenuItem>
-          <MenuItem
-            icon={<PollIcon />}
-            className="tracking-[1px] text-white hover:text-black"
-          >
-            <Link to="/political-parties">POLITICAL PARTIES</Link>
-          </MenuItem>
-          <MenuItem
-            icon={<HowToRegIcon />}
-            className="tracking-[1px] text-white hover:text-black"
-          >
-            <Link to="/election-candidates">CANDIDATES</Link>
-          </MenuItem>
-          <MenuItem
-            icon={<PeopleAltIcon />}
-            className="tracking-[1px] text-white hover:text-black"
-          >
-            <Link to="/voters">VOTERS</Link>
-          </MenuItem>
+          <Link to="/admin-dashboard">
+            <MenuItem
+              icon={<DashboardIcon />}
+              className="tracking-[1px] text-white hover:text-black"
+            >
+              DASHBOARD
+            </MenuItem>
+          </Link>
+          <Link to="/political-parties">
+            <MenuItem
+              icon={<PollIcon />}
+              className="tracking-[1px] text-white hover:text-black"
+            >
+              POLITICAL PARTIES
+            </MenuItem>
+          </Link>
+          <Link to="/election-candidates">
+            <MenuItem
+              icon={<HowToRegIcon />}
+              className="tracking-[1px] text-white hover:text-black"
+            >
+              CANDIDATES
+            </MenuItem>
+          </Link>
+          <Link to="/voters">
+            <MenuItem
+              icon={<PeopleAltIcon />}
+              className="tracking-[1px] text-white hover:text-black"
+            >
+              VOTERS
+            </MenuItem>
+          </Link>
           <Link to={{ pathname: "../voting-centers" }}>
             <MenuItem
               icon={<HowToVoteIcon />}
@@ -61,14 +69,16 @@ export default function AdminSidebar() {
             </MenuItem>
           </Link>
           <Divider className="bg-white" />
-          <MenuItem
-            icon={<LogoutIcon />}
-            className="tracking-[1px] text-white hover:text-black"
-          >
-            LOGOUT
-          </MenuItem>
+          <Link to={{pathname:"../AdministratorLogin"}}>
+            <MenuItem
+              icon={<LogoutIcon />}
+              className="tracking-[1px] text-white hover:text-black"
+            >
+              LOGOUT
+            </MenuItem>
+          </Link>
         </Menu>
-      </Sidebar>
+      </Sidebar >
       {/* </div> */}
     </>
     // End of AdminSidebar component

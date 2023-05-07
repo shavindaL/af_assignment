@@ -63,7 +63,7 @@ export default function VotersTable() {
   return (
     // Start of VotersTable component
     <>
-      <center>
+      {/* <center>
         <Button
           variant="outlined"
           sx={{ color: "#1565c0" }}
@@ -72,7 +72,7 @@ export default function VotersTable() {
         >
           ADD
         </Button>
-      </center>
+      </center> */}
 
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 700 }} aria-label="customized table">

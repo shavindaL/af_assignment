@@ -110,7 +110,7 @@ export default function CusPartyCandidates() {
                     {row.votingNumber[0].number}
                   </StyledTableCell>
 
-                  <StyledTableCell align="center">{10}</StyledTableCell> 
+                  <StyledTableCell align="center">{row.voteCount}</StyledTableCell> 
                 </StyledTableRow>
               ))}
           </TableBody>
