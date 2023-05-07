@@ -41,7 +41,7 @@ function App() {
           <Route path="/AdministratorLogin" element={<AdministratorLogin />} />
           <Route path="/InquiryForm" element={<InquiryForm />} />
           <Route path="/ElectionResults" element={<ElectionResults />} />
-          <Route path="/CandidateProfile" element={<CandidateProfile />} />
+          <Route path="/CandidateProfile/:_id" element={<CandidateProfile />} />
         </Routes>
       </BrowserRouter>
     </>
