@@ -32,6 +32,9 @@ export default function AccountCreationForm() {
 
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
+    const [successAlert, setSuccessAlert] = useState(false);
+    const [errorAlert, setErrorAlert] = useState(false);
+
 
 
     //* Check enterd data is valid
@@ -104,6 +107,9 @@ export default function AccountCreationForm() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setErrorAlert(false);
+        setSuccessAlert(false);
+
         validateData();
 
         if (isValid) {
@@ -132,11 +138,12 @@ export default function AccountCreationForm() {
             if (!res.ok) {
                 setIsLoading(false);
                 setError(json.error)
+                setErrorAlert(true);
             }
 
             if (res.ok) {
                 setIsLoading(false);
-                alert("Okay")
+                setSuccessAlert(true);
             }
         }
     };
@@ -208,11 +215,12 @@ export default function AccountCreationForm() {
                             Submit
                         </Button>
                         :
-                        <div className="mx-auto">
+                        <div className="mx-auto pt-4">
                             <CircularProgress />
                         </div>}
                 </FormControl>
-                {error && <Alert severity="error">{error}</Alert>}
+                {errorAlert ? <Alert severity="error">{error}</Alert> : null}
+                {successAlert ? <Alert severity="success">Voting Center Successfully added.</Alert> : null}
             </form>
         </div>
     );

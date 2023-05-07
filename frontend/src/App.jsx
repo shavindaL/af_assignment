@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import VotingCenterSignup from "./pages/VotingCenterSignup";
 import AdminDashboard from "./pages/AdminDashboard";
@@ -18,7 +18,9 @@ import CusPoliticalPartiesPage from "./pages/CusPoliticalPartiesPage";
 import CusPoliticalParty from "./pages/CusPoliticalParty";
 
 import AddCandidate from "./pages/AddCandidate";
-
+import ValidateVoter from "./pages/ValidateVoter";
+import UpdateCandidates from "./pages/UpdateCandidates";
+import VotingPage from "./pages/VoitingPage";
 
 function App() {
   return (
@@ -28,8 +30,9 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/voting-center/new-account" element={<VotingCenterSignup />} />
           <Route path="/voting-center/login" element={<VotingCenterLogin />} />
+          <Route path="/voting-center/validate" element={localStorage.getItem('votingCenter') ? <ValidateVoter /> :<Navigate to='../voting-center/login'/> } />
           <Route path="/admin-dashboard" element={<AdminDashboard />} />
-          <Route path="/election-candidates/candidate" element={<AddCandidate/>} />
+          <Route path="/election-candidates/candidate" element={<AddCandidate />} />
           <Route path="/political-parties" element={<PoliticalParties />} />
           <Route path="/election-candidates" element={<ElectionCandidates />} />
           <Route path="/voters" element={<Voters />} />
@@ -51,6 +54,8 @@ function App() {
 
           <Route path="/political_parties" element={<CusPoliticalPartiesPage />} />
           <Route path="/political_parties/:id" element={<CusPoliticalParty />} />
+          <Route path="/election-candidates/update/:id" element={<UpdateCandidates />} />
+          <Route path="/voting-center/vote" element={localStorage.getItem('validate') ? <VotingPage /> : <Navigate to='../voting-center/validate' />} />
         </Routes>
       </BrowserRouter>
     </>

@@ -19,10 +19,10 @@ export const VotingCenterAuthContextProvider = ({ children }) => {
     })
 
     useEffect(() => {
-        const user = JSON.parse(localStorage.getItem('votingCenter'))
+        const location = JSON.parse(localStorage.getItem('votingCenter'))
 
-        if (user) {
-            dispatch({ type: 'LOGIN', payload: user })
+        if (location) {
+            dispatch({ type: 'LOGIN', payload: location })
         }
     }, [])
 

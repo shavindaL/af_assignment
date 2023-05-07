@@ -1,10 +1,49 @@
 import { Alert, Button, CircularProgress, FormControl, Grid, TextField } from "@mui/material";
 import { auto } from "@popperjs/core";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLogin } from "../../hooks/useVotingCenterLogIn";
 
 
 export default function LoginForm() {
+
+    const [votingCenters, setVotingCenters] = useState([]);
+    const [selectedItems, setSelectedItems] = useState([]);
+    const [errorAlert, setErrorAlert] = useState(false)
+
+
+
+    useEffect(() => {
+        const getData = async () => {
+            const res = await fetch('http://localhost:5000/api/v1/voting-centers');
+            const json = await res.json();
+            if (res.ok) {
+                setVotingCenters(json)
+            }
+        }
+
+        getData()
+    }, [])
+
+
+    const handleClick = (center) => {
+
+        // Check if the clicked item is already selected
+        if (selectedItems.includes(center)) {
+            setErrorAlert(false)
+            // If it is, remove it from the array of selected items
+            setSelectedItems(selectedItems.filter(selectedItem => selectedItem !== center));
+        } else {
+            // If it's not, add it to the array of selected items
+            if (selectedItems.length === 0) {
+                setErrorAlert(false)
+                setSelectedItems([...selectedItems, center]);
+                setLocation(center.votingCenterLocation);
+            }
+            else {
+                setErrorAlert(true)
+            }
+        }
+    }
 
     const [location, setLocation] = useState("");
     const [password, setPassword] = useState("");
@@ -26,6 +65,7 @@ export default function LoginForm() {
         }
     }
 
+    //* validation
     const validate = () => {
         if (location === "") {
             setIsValid(false)
@@ -67,119 +107,35 @@ export default function LoginForm() {
 
                 <h1 className="text-center text-4xl">{page == 0 ? "Select Province" : "Enter Password"}</h1>
             </div>
+            <div className="w-96 mx-auto mt-10"> 
+                {errorAlert && <Alert severity="error">Remove previous selected location to select new location.</Alert>}
+                {error && page === 1 && <Alert severity="error">{error}</Alert>}
+                {isLoading ? <div className="mx-auto">
+                    <CircularProgress />
+                </div> : null}
+            </div>
             <form onSubmit={handleSubmit}>
                 {page === 0 ? <div className="ml-20 w-fit mt-10">
                     <FormControl>
                         <Grid container spacing={12}>
-                            <Grid item xs={12} sm={6} md={4} lg={4}>
-                                <Button
-                                    variant="contained"
-                                    onClick={() => { setLocation("Central") }}
-                                    sx={{
-                                        width: 500,
-                                        height: 120,
-                                        fontSize: 36,
-                                        fontWeight: 700,
-                                        borderRadius: 5,
-                                    }}>Central</Button>
-                            </Grid>
+                            {votingCenters && votingCenters.map(votingCenter =>
+                                <Grid item xs={12} sm={6} md={4} lg={4} key={votingCenter.votingCenterId}>
+                                    <Button
+                                        variant={selectedItems.includes(votingCenter) ? "outlined" : "contained"}
+                                        onClick={() => {
 
-                            <Grid item xs={12} sm={6} md={4} lg={4}>
-                                <Button
-                                    variant="contained"
-                                    onClick={() => { setLocation("North Central") }}
-                                    sx={{
-                                        width: 500,
-                                        height: 120,
-                                        fontSize: 36,
-                                        fontWeight: 700,
-                                        borderRadius: 5
-                                    }}>North Central</Button>
-                            </Grid>
-                            <Grid item xs={12} sm={6} md={4} lg={4}>
-                                <Button
-                                    variant="contained"
-                                    onClick={() => { setLocation("Northern") }}
-                                    sx={{
-                                        width: 500,
-                                        height: 120,
-                                        fontSize: 36,
-                                        fontWeight: 700,
-                                        borderRadius: 5
-                                    }}>Northern</Button>
-                            </Grid>
-                            <Grid item xs={12} sm={6} md={4} lg={4}>
-                                <Button
-                                    variant="contained"
-                                    onClick={() => { setLocation("Eastern") }}
-                                    sx={{
-                                        width: 500,
-                                        height: 120,
-                                        fontSize: 36,
-                                        fontWeight: 700,
-                                        borderRadius: 5
-                                    }}>Eastern</Button>
-                            </Grid>
-                            <Grid item xs={12} sm={6} md={4} lg={4}>
-                                <Button
-                                    variant="contained"
-                                    onClick={() => { setLocation("North Western") }}
-                                    sx={{
-                                        width: 500,
-                                        height: 120,
-                                        fontSize: 36,
-                                        fontWeight: 700,
-                                        borderRadius: 5
-                                    }}>North Western</Button>
-                            </Grid>
-                            <Grid item xs={12} sm={6} md={4} lg={4}>
-                                <Button
-                                    variant="contained"
-                                    onClick={() => { setLocation("Southern") }}
-                                    sx={{
-                                        width: 500,
-                                        height: 120,
-                                        fontSize: 36,
-                                        fontWeight: 700,
-                                        borderRadius: 5
-                                    }}>Southern</Button>
-                            </Grid>
-                            <Grid item xs={12} sm={6} md={4} lg={4}>
-                                <Button
-                                    variant="contained"
-                                    onClick={() => { setLocation("Uva") }}
-                                    sx={{
-                                        width: 500,
-                                        height: 120,
-                                        fontSize: 36,
-                                        fontWeight: 700,
-                                        borderRadius: 5
-                                    }}>Uva</Button>
-                            </Grid>
-                            <Grid item xs={12} sm={6} md={4} lg={4}>
-                                <Button
-                                    variant="contained"
-                                    onClick={() => { setLocation("Sabaragamuwa") }}
-                                    sx={{
-                                        width: 500,
-                                        height: 120,
-                                        fontSize: 36,
-                                        fontWeight: 700,
-                                        borderRadius: 5
-                                    }}>Sabaragamuwa</Button>
-                            </Grid>
-                            <Grid item xs={12} sm={6} md={4} lg={4}>
-                                <Button
-                                    variant="contained"
-                                    onClick={() => { setLocation("Western") }}
-                                    sx={{
-                                        width: 500,
-                                        height: 120,
-                                        fontSize: 36,
-                                        fontWeight: 700,
-                                        borderRadius: 5
-                                    }}>Western</Button>
-                            </Grid>
+                                            handleClick(votingCenter);
+                                        }}
+                                        sx={{
+                                            width: 500,
+                                            height: 120,
+                                            fontSize: 36,
+                                            fontWeight: 700,
+                                            borderRadius: 5,
+                                        }}>{votingCenter.votingCenterLocation}</Button>
+                                </Grid>
+                            )
+                            }
                         </Grid>
                     </FormControl>
                 </div> :
@@ -245,10 +201,6 @@ export default function LoginForm() {
                             >
                                 Login
                             </Button>}
-                        {error && <Alert severity="error">{error}</Alert>}
-                        {isLoading ? <div className="mx-auto">
-                            <CircularProgress />
-                        </div> : null}
                     </Grid>
                 </Grid>
             </form>

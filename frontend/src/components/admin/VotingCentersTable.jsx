@@ -10,6 +10,7 @@ import { Avatar, Button, IconButton } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import { useEffect, useState } from "react";
 import ConfirmDialog from "./ConfirmDialog";
+import { Link } from "react-router-dom";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -35,44 +36,40 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 export default function VotingCenterTable() {
   // Array to hold voting center data
-  const [rows, setRows] = useState([]);
+  // const [voterCenters, setVoterCenters] = useState([]);
 
-  // Use useEffect hook
+
+  const [votingCenters, setVotingCenters] = useState([]);
+
   useEffect(() => {
     // Method to get data of voting centers
-    async function getVotingCenterData() {
-      try {
-        const res = await fetch("http://localhost:5000/api/v1/voting-centers");
-        const data = await res.json();
+    const getData = async () => {
 
-        if (data) {
-          //Set the state variable
-          setRows(data.votingCenters);
-          console.log(data.votingCenters);
-        }
-      } catch (err) {
-        // Print error message
-        console.log(err.message);
+      const res = await fetch('http://localhost:5000/api/v1/voting-centers');
+      const json = await res.json();
+
+      if (res.ok) {
+        //Set the state variable
+        setVotingCenters(json)
       }
     }
-
     // Invoke getVotingCenterData method
-    getVotingCenterData();
-
-  }, []);
-
+    getData()
+  }, [])
   return (
     // Start of VotingCenterTable component
     <>
       <center>
-        <Button
-          variant="outlined"
-          sx={{ color: "#1565c0" }}
-          href="#"
-          className="relative bottom-[10px]"
-        >
-          ADD
-        </Button>
+        <Link to={{ pathname: "../voting-center/new-account" }}>
+          <Button
+            variant="outlined"
+            sx={{ color: "#1565c0" }}
+            href="#"
+            className="relative bottom-[10px]"
+          >
+            ADD
+          </Button>
+        </Link>
       </center>
 
       <TableContainer component={Paper}>
@@ -88,16 +85,16 @@ export default function VotingCenterTable() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows &&
-              rows.map((row) => (
-                <StyledTableRow key={row._id}>
+            {votingCenters &&
+              votingCenters.map(voterCenter =>
+                <StyledTableRow key={voterCenter._id}>
                   <StyledTableCell component="th" scope="row" align="left">
                     {/* <Avatar
                       align="center"
                       sx={{ position: "relative", left: "25px" }}
                     >
                       <img
-                        src={row.logo}
+                        src={voterCenter.logo}
                         alt="logo"
                         style={{
                           borderRadius: "50%",
@@ -107,21 +104,21 @@ export default function VotingCenterTable() {
                         }}
                       />
                     </Avatar> */}
-                    {row.votingCenterId}
+                    {voterCenter.votingCenterId}
                   </StyledTableCell>
                   <StyledTableCell align="center">
-                    {row.votingCenterLocation}
-                  </StyledTableCell>
-
-                  <StyledTableCell align="center">
-                    {row.voterCenterOfficialId}
+                    {voterCenter.votingCenterLocation}
                   </StyledTableCell>
 
                   <StyledTableCell align="center">
-                    {row.voterCenterOfficialName}
+                    {voterCenter.votingCenterOfficialId}
+                  </StyledTableCell>
+
+                  <StyledTableCell align="center">
+                    {voterCenter.votingCenterOfficialName}
                   </StyledTableCell>
                   <StyledTableCell align="center">
-                    {row.voterCenterContactNo}
+                    {voterCenter.votingCenterContactNo}
                   </StyledTableCell>
                   <StyledTableCell align="center">
                     <IconButton
@@ -131,10 +128,10 @@ export default function VotingCenterTable() {
                       <EditIcon fontSize="inherit" sx={{ color: "#42a5f5" }} />
                     </IconButton>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    {/* <ConfirmDialog partyID={row.partyID} /> */}
+                    {/* <ConfirmDialog partyID={voterCenter.partyID} /> */}
                   </StyledTableCell>
                 </StyledTableRow>
-              ))}
+              )}
           </TableBody>
         </Table>
       </TableContainer>
