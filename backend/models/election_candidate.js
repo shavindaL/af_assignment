@@ -17,11 +17,11 @@ const electionCandidateSchema = new Schema(
       required: true,
       unique: true,
     },
-    gender:{
+    gender: {
       type: String,
       required: true,
     },
-    dob:{
+    dob: {
       type: String,
       // required: true,
     },
@@ -44,33 +44,25 @@ const electionCandidateSchema = new Schema(
       type: String,
       required: true,
     },
-    province:{
+    province: {
       type: String,
       required: true
     },
     votingNumber: [
 
-        {
-            election: {
-                type: String,
-                
-            },
-            number: {
-                type: String,
-            }
-        }
-    ],
-    voteCount: [
+      {
+        election: {
+          type: String,
 
-        {
-            election: {
-                type: String, 
-            },
-            count: {
-                type: Number,
-            }
+        },
+        number: {
+          type: String,
         }
+      }
     ],
+    voteCount: {
+      type: Number,
+    },
     photo: {
       type: String,
     },

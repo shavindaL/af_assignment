@@ -6,7 +6,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import Paper from "@mui/material/Paper";
-import { Alert, Button, IconButton } from "@mui/material";
+import { Alert, Button, CircularProgress, IconButton } from "@mui/material";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { auto } from "@popperjs/core";
@@ -41,6 +41,7 @@ export default function VotingCandidateTable() {
     const [candidates, setCandidates] = useState();
     const [errorAlert, setErrorAlert] = useState(false)
     const [successAlert, setSuccessAlert] = useState(false)
+    const [isLoading, setIsLoading] = useState(false)
 
     const { location } = useVotingCenterAuthContext();
 
@@ -48,21 +49,28 @@ export default function VotingCandidateTable() {
     useEffect(() => {
         // Method to get data of election candidates
         async function getCandidateData() {
-            try {
-                const res = await fetch("http://localhost:5000/api/v1/candidates");
-                const data = await res.json()
+            setIsLoading(true)
+            const res = await fetch("http://localhost:5000/api/v1/candidates");
+            const candidateData = await res.json()
 
-                // data.sort((a, b) => (b.votingNumber[0].number) - (a.votingNumber[0].number));
+            const res2 = await fetch("http://localhost:5000/api/v1/political-parties");
+            const partyData = await res2.json()
 
-                if (data) {
-                    //Set the state variable
-                    setCandidates(data);
-                }
-            } catch (err) {
-                // Print error message
-                console.log(err.message);
+            if (res.ok && res2.ok) {
+                //* Add political party name to candidate object
+
+                candidateData.forEach(candidate => {
+                    partyData.forEach(party => {
+                        if (Number(candidate.politicalPartyId) === Number(party.partyID)) {
+                            candidate.politicalPartyName = party.name
+                        }
+                    })
+                });
+                setCandidates(candidateData);
             }
+            setIsLoading(false)
         }
+
         getCandidateData()
     }, [])
 
@@ -139,13 +147,14 @@ export default function VotingCandidateTable() {
                             </TableRow>
                         </TableHead>
                         <TableBody>
+
                             {candidates &&
                                 candidates.map((candidate) => (
                                     <StyledTableRow key={candidate._id}>
                                         <StyledTableCell align="center">{candidate.name}</StyledTableCell>
 
                                         <StyledTableCell align="center">
-                                            {candidate.politicalPartyId}
+                                            {candidate.politicalPartyName}
                                         </StyledTableCell>
 
                                         <StyledTableCell align="center">
@@ -164,6 +173,9 @@ export default function VotingCandidateTable() {
                         </TableBody>
                     </Table>
                 </TableContainer>
+                {isLoading ? <div className="w-fit mx-auto mt-16">
+                    <CircularProgress size={100} />
+                </div> : null}
             </div>
         </>
     )

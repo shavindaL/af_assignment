@@ -35,7 +35,6 @@ export default function ValidateVoter() {
                 setAlert(false)
                 localStorage.setItem('validate', JSON.stringify(json))
                 window.location.replace("http://localhost:3000/voting-center/vote")
-                
             }
 
             if (!res.ok) {
