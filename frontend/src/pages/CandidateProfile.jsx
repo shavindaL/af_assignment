@@ -34,23 +34,23 @@ function CandidateProfile(props) {
         <div className="grid grid-cols-3 gap-4 mt-8 p-10">
             <div>
                 <h2 className="text-md font-bold text-gray-700 ml-20">Personal Information</h2>
-                <p className="text-gray-600 mt-2 ml-20"><i className="fas fa-address-card mr-2">NIC Number:</i>{candidate.nic}</p>
-                <p className="text-gray-600 mt-2 ml-20"><i className="fas fa-address-card mr-2">Gender:</i>{candidate.gender}</p>
+                <p className="text-gray-600 mt-2 ml-20">NIC Number: <i className="fas fa-address-card ml-1">{candidate.nic}</i></p>
+                <p className="text-gray-600 mt-2 ml-20">Gender: <i className="fas fa-address-card ml-1">{candidate.gender}</i></p>
             </div>
             <div>
                 <h2 className="text-md font-bold text-gray-700">Contact Information</h2>
-                <p className="text-gray-600 mt-2"><i className="fas fa-phone mr-2">Phone:</i>{candidate.phoneNo}</p>
-                <p className="text-gray-600 mt-2"><i className="fas fa-envelope mr-2">Email:</i>{candidate.email}</p>
+                <p className="text-gray-600 mt-2">Phone: <i className="fas fa-phone ml-1">{candidate.phoneNo}</i></p>
+                <p className="text-gray-600 mt-2">Email: <i className="fas fa-envelope ml-1">{candidate.email}</i></p>
             </div>
             <div>
                 <h2 className="text-md font-bold text-gray-700">Election Information</h2>
-                <p className="text-gray-600 mt-2"><i className="fas fa-users mr-2">Political party ID:</i>{candidate.politicalPartyId}</p>
-                <p className="text-gray-600 mt-2"><i className="fas fa-map-marker-alt mr-2">Province:</i>{candidate.province}</p>
-                <p className="text-gray-600 -mt-4"><i className="fas fa-vote-yea mr-2"></i>{candidate.votingNumber.map((number, index) => (
+                <p className="text-gray-600 mt-2">Political party ID: <i className="fas fa-users ml-1">{candidate.politicalPartyId}</i></p>
+                <p className="text-gray-600 mt-2">Province: <i className="fas fa-map-marker-alt ml-1">{candidate.province}</i></p>
+                <p className="text-gray-600 -mt-4"><i className="fas fa-vote-yea ml-1"></i>{candidate.votingNumber.map((number, index) => (
                   <p key={index}>
-                    <span className="text-gray-600 mt-2"><i className="fas fa-users mr-2">Election Year:</i></span> {number.election}
+                    <span className="text-gray-600 mt-2">Election Year: <i className="fas fa-users ml-1">{number.election}</i></span> 
                     <br />
-                    <span className="text-gray-600 mt-9"><i className="fas fa-users mr-2">Voting Number:</i></span> {number.number}
+                    <span className="text-gray-600 mt-9">Voting Number: <i className="fas fa-users ml-1">{number.number}</i></span> 
                   </p>
             ))}</p>
             </div>
