@@ -1,17 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useParams } from "react-router-dom";
 
 function CandidateProfile(props) {
+
+  const { _id } = useParams();
 
   const [candidate, setCandidate] = useState(null);
 
   useEffect(() => {
     async function fetchCandidate() {
-      const response = await axios.get(`http://localhost:5000/api/v1/candidates/991034927V`);
+      const response = await axios.get(`http://localhost:5000/api/v1/candidates/${_id}`);
       setCandidate(response.data);
     }
     fetchCandidate();
-  }, [props.nic]);
+  }, [props._id]);
 
   if (!candidate) {
     return <div>Loading candidate...</div>;
